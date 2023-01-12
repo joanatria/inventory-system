@@ -240,4 +240,56 @@ public class IngredientController implements Initializable {
         ingredientList = loadIngredients();
         ingredientTable.setItems(ingredientList);
     }
+
+    public static String generateSKU(Ingredient ingredient){
+
+        String item = ingredient.getItem();
+        String category = ingredient.getCategory();
+        item = item.replaceAll("\\s", "");
+
+        char itemArr[] = item.toCharArray();
+        String tritem = "";
+
+        for (int i = 0; i < itemArr.length; i++) {
+            if (itemArr[i] != ' ') {
+                tritem += itemArr[i];
+            }
+        }
+
+        char categArr[] = category.toCharArray();
+        String trcategory = "";
+
+        for (int i = 0; i < categArr.length; i++) {
+            if (categArr[i] != ' ') {
+                trcategory += categArr[i];
+            }
+        }
+
+        char first = trcategory.charAt(0);
+        char last = trcategory.charAt(category.length()-1);
+        char fitem = tritem.charAt(0);
+        char litem = tritem.charAt(item.length()-1);
+        StringBuilder sku = new StringBuilder();
+        sku.append(first);
+        sku.append(last);
+        sku.append(fitem);
+        sku.append(litem);
+        sku.append("-");
+
+        int randomNum = (int)Math.floor(Math.random() * (9999 - 0000 + 1) + 0000);
+        String randNum = String.valueOf(randomNum);
+        if (randNum.length() == 4){
+            sku.append(randNum);
+        }else if (randNum.length() < 4 && randNum.length() >-1){
+            int len = 4 - randNum.length();
+            for(int i = 0; i < len; i++){
+                sku.append(0);
+            }
+            sku.append(randNum);
+        }
+
+        String skucode = (String.valueOf(sku)).toUpperCase();
+        System.out.println(skucode);
+        return skucode;
+    }
 }

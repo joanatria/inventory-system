@@ -1,15 +1,204 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.example.mp_mijomi_cafe.IngredientController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-
-    <Label fx:id="welcomeText" />
-    <Button onAction="#onHelloButtonClick" text="Hello!" />
-</VBox>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mp_mijomi_cafe.IngredientController">
+    <children>
+        <ImageView fx:id="mijomilogo" fitHeight="207.0" fitWidth="464.0" layoutX="115.0" layoutY="-41.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="367.1297607421875" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="131.0" AnchorPane.topAnchor="-41.0">
+            </ImageView>
+        <AnchorPane layoutY="113.0" prefHeight="390.0" prefWidth="703.0" style="-fx-background-color: F7F7F7;">
+            <children>
+                <TabPane layoutY="-38.0" prefHeight="384.0" prefWidth="710.0"  tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Appetizers">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="285.0" prefWidth="686.0">
+                                    <children>
+                                        <ImageView fx:id="box1" fitHeight="190.0" fitWidth="200.0" layoutX="38.0" layoutY="54.0" pickOnBounds="true" AnchorPane.bottomAnchor="89.5" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="472.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <ImageView fx:id="box2" fitHeight="190.0" fitWidth="200.0" layoutX="256.0" layoutY="54.0" pickOnBounds="true" AnchorPane.bottomAnchor="89.5" AnchorPane.leftAnchor="256.0" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <ImageView fx:id="box3" fitHeight="190.0" fitWidth="200.0" layoutX="472.0" layoutY="54.0" pickOnBounds="true" AnchorPane.leftAnchor="472.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <Label alignment="CENTER" layoutX="58.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Mozzarella Sticks" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="276.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Dynamite" textAlignment="CENTER">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="492.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Kangkong Chips" textAlignment="CENTER">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Main Course">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <ImageView fx:id="mcbox1" fitHeight="190.0" fitWidth="200.0" layoutX="34.0" layoutY="60.0" pickOnBounds="true" AnchorPane.bottomAnchor="73.5" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="486.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <ImageView fx:id="mcbox2" fitHeight="190.0" fitWidth="200.0" layoutX="265.0" layoutY="60.0" pickOnBounds="true" AnchorPane.bottomAnchor="73.5" AnchorPane.leftAnchor="264.0" AnchorPane.rightAnchor="254.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <ImageView fx:id="mcbox3" fitHeight="190.0" fitWidth="200.0" layoutX="482.0" layoutY="60.0" pickOnBounds="true" AnchorPane.leftAnchor="482.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <Label alignment="CENTER" layoutX="53.0" layoutY="258.0" prefHeight="52.0" prefWidth="160.0" text="Chicken with Mashed Potato" textAlignment="CENTER" wrapText="true" AnchorPane.bottomAnchor="23.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="276.0" layoutY="260.0" prefHeight="24.0" prefWidth="160.0" text="Breaded Pork Chop" textAlignment="CENTER">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="497.0" layoutY="258.0" prefHeight="52.0" prefWidth="160.0" text="Beef Tenderloin with Broccoli Gratin " textAlignment="CENTER" wrapText="true">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Side Dishes">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <ImageView fx:id="sdbox1" fitHeight="190.0" fitWidth="200.0" layoutX="43.0" layoutY="30.0" pickOnBounds="true" AnchorPane.bottomAnchor="114.5" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="398.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <ImageView fx:id="sdbox2" fitHeight="190.0" fitWidth="200.0" layoutX="255.0" layoutY="54.0" pickOnBounds="true" AnchorPane.bottomAnchor="89.5" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <ImageView fx:id="sdbox3" fitHeight="190.0" fitWidth="200.0" layoutX="470.0" layoutY="54.0" pickOnBounds="true" AnchorPane.leftAnchor="470.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <Label alignment="CENTER" layoutX="58.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Mashed Potato" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="282.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Mac and Cheese" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="490.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Mojos" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Desserts">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <ImageView fx:id="dbox1" fitHeight="190.0" fitWidth="200.0" layoutX="43.0" layoutY="30.0" pickOnBounds="true" AnchorPane.bottomAnchor="114.5" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="398.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <ImageView fx:id="dbox2" fitHeight="190.0" fitWidth="200.0" layoutX="255.0" layoutY="54.0" pickOnBounds="true" AnchorPane.bottomAnchor="89.5" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="255.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <ImageView fx:id="dbox3" fitHeight="190.0" fitWidth="200.0" layoutX="470.0" layoutY="54.0" pickOnBounds="true" AnchorPane.leftAnchor="470.0" AnchorPane.rightAnchor="40.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <Label alignment="CENTER" layoutX="66.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Ice Cream" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="275.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Chocolate Chip Cookies" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="490.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Brownies" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Drinks">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <ImageView fx:id="drbox1" fitHeight="190.0" fitWidth="200.0" layoutX="35.0" layoutY="54.0" pickOnBounds="true" AnchorPane.bottomAnchor="89.5" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="475.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <ImageView fx:id="drbox2" fitHeight="190.0" fitWidth="200.0" layoutX="241.0" layoutY="54.0" pickOnBounds="true" AnchorPane.bottomAnchor="89.5" AnchorPane.leftAnchor="254.0" AnchorPane.rightAnchor="269.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <ImageView fx:id="drbox3" fitHeight="190.0" fitWidth="200.0" layoutX="470.0" layoutY="54.0" pickOnBounds="true" AnchorPane.leftAnchor="470.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <Label alignment="CENTER" layoutX="58.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Americano" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="275.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Latte" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="490.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Cappuccino" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Merchandise">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <ImageView fx:id="mbox1" fitHeight="190.0" fitWidth="200.0" layoutX="43.0" layoutY="30.0" pickOnBounds="true" AnchorPane.bottomAnchor="114.5" AnchorPane.leftAnchor="38.0" AnchorPane.rightAnchor="398.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <ImageView fx:id="mbox2" fitHeight="190.0" fitWidth="200.0" layoutX="221.0" layoutY="30.0" pickOnBounds="true" AnchorPane.bottomAnchor="114.5" AnchorPane.leftAnchor="254.0" AnchorPane.rightAnchor="220.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <ImageView fx:id="mbox3" fitHeight="190.0" fitWidth="200.0" layoutX="470.0" layoutY="54.0" pickOnBounds="true" AnchorPane.leftAnchor="470.0" AnchorPane.rightAnchor="38.0" AnchorPane.topAnchor="54.0">
+                                        </ImageView>
+                                        <Label alignment="CENTER" layoutX="49.0" layoutY="192.0" prefHeight="24.0" prefWidth="160.0" text="Mugs" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="275.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Planner" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <Label alignment="CENTER" layoutX="490.0" layoutY="256.0" prefHeight="24.0" prefWidth="160.0" text="Tumbler" textAlignment="CENTER" AnchorPane.bottomAnchor="53.5">
+                                            <font>
+                                                <Font name="AppleGothic Regular" size="14.0" />
+                                            </font>
+                                        </Label>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+                <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a27657" height="52.0" layoutY="338.0" stroke="#a27657" strokeType="INSIDE" width="710.0" AnchorPane.topAnchor="338.0" />
+            </children></AnchorPane>
+        <AnchorPane layoutX="618.0" layoutY="80.0" prefHeight="35.0" prefWidth="92.0">
+            <children>
+                <Button layoutX="20.0" layoutY="2.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="86.0" style="-fx-background-color: #BF8C69;" text="Inventory" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0">
+                    <font>
+                        <Font name="AppleGothic Regular" size="15.0" />
+                    </font>
+                </Button>
+            </children></AnchorPane>
+    </children>
+</AnchorPane>
