@@ -10,13 +10,16 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="329.0" style="-fx-background-color: #ECE5DD;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mp_mijomi_cafe.updateExistingController">
-    <GridPane layoutX="31.0" layoutY="28.0" prefHeight="294.0" prefWidth="272.0">
+<AnchorPane prefHeight="400.0" prefWidth="329.0" style="-fx-background-color: #ECE5DD;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mp_mijomi_cafe.restockController">
+    <GridPane layoutX="34.0" layoutY="38.0" prefHeight="275.0" prefWidth="272.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="94.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="178.0" minWidth="10.0" prefWidth="178.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="132.0" minWidth="10.0" prefWidth="81.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="178.0" minWidth="10.0" prefWidth="128.0" />
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="178.0" minWidth="10.0" prefWidth="59.0" />
         </columnConstraints>
         <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -26,81 +29,74 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
-        <Label text="Item" textFill="#594a47">
+        <Label text="Item" textFill="#594a47" GridPane.rowIndex="2">
             <font>
                 <Font name="AppleGothic Regular" size="15.0" />
             </font>
         </Label>
-        <Label prefWidth="101.0" text="Category" textFill="#594a47" GridPane.rowIndex="1">
+        <Label prefWidth="101.0" text="Category" textFill="#594a47" GridPane.rowIndex="3">
             <font>
                 <Font name="AppleGothic Regular" size="15.0" />
             </font>
         </Label>
-        <Label text="Amount" textFill="#594a47" GridPane.rowIndex="3">
+        <Label text="Amount" textFill="#594a47" GridPane.rowIndex="5">
             <font>
                 <Font name="AppleGothic Regular" size="15.0" />
             </font>
         </Label>
-        <Label text="Brand" textFill="#594a47" GridPane.rowIndex="2">
+        <Label text="Brand" textFill="#594a47" GridPane.rowIndex="4">
             <font>
                 <Font name="AppleGothic Regular" size="15.0" />
             </font>
         </Label>
-        <Label text="Color" textFill="#594a47" GridPane.rowIndex="5">
+        <Label text="Color" textFill="#594a47" GridPane.rowIndex="7">
             <font>
                 <Font name="AppleGothic Regular" size="15.0" />
             </font>
         </Label>
-        <Label text="Type" textFill="#594a47" GridPane.rowIndex="6">
+        <Label text="Type" textFill="#594a47" GridPane.rowIndex="8">
             <font>
                 <Font name="AppleGothic Regular" size="15.0" />
             </font>
         </Label>
-        <Label text="Description" textFill="#594a47" GridPane.rowIndex="7">
+        <Label text="Description" textFill="#594a47" GridPane.rowIndex="9">
             <font>
                 <Font name="AppleGothic Regular" size="15.0" />
             </font>
         </Label>
-        <TextField fx:id="itemSizeField" GridPane.columnIndex="1" GridPane.rowIndex="3">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="brandField" GridPane.columnIndex="1" GridPane.rowIndex="2">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="colorField" GridPane.columnIndex="1" GridPane.rowIndex="5">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="typeField" GridPane.columnIndex="1" GridPane.rowIndex="6">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </TextField>
-        <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="7">
-            <font>
-                <Font size="15.0" />
-            </font>
-        </TextField>
-      <TextField fx:id="unitField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Label text="Unit" textFill="#594a47" GridPane.rowIndex="4">
+      <Label text="Unit" textFill="#594a47" GridPane.rowIndex="6">
          <font>
             <Font size="15.0" />
          </font></Label>
-      <Label fx:id="itemLabel" layoutX="10.0" layoutY="276.0" prefHeight="22.0" prefWidth="181.0" textFill="#594a47" GridPane.columnIndex="1">
+      <Label fx:id="itemLabel" layoutX="10.0" layoutY="276.0" prefHeight="22.0" prefWidth="181.0" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <font>
             <Font name="AppleGothic Regular" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="categoryLabel" layoutX="104.0" layoutY="17.0" prefHeight="22.0" prefWidth="181.0" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <Label fx:id="categoryLabel" layoutX="104.0" layoutY="17.0" prefHeight="22.0" prefWidth="181.0" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <font>
             <Font name="AppleGothic Regular" size="15.0" />
          </font>
       </Label>
+      <Label fx:id="brandLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <Label fx:id="itemSizeLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <Label fx:id="unitLabel" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <Label fx:id="colorLabel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+      <Label fx:id="descriptionLabel" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+      <Label fx:id="typeLabel" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Label prefHeight="41.0" prefWidth="62.0" text="SKU" textFill="#594a47">
+         <font>
+            <Font name="AppleGothic Regular" size="15.0" />
+         </font>
+      </Label>
+      <Label text="Add amount" textFill="#594a47" GridPane.rowIndex="1">
+         <font>
+            <Font name="AppleGothic Regular" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="SKUField" GridPane.columnIndex="1" />
+      <TextField fx:id="addAmountField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" onAction="#searchButtonClicked" text="Search" GridPane.columnIndex="2" />
     </GridPane>
     <ButtonBar layoutX="113.0" layoutY="339.0" prefHeight="46.0" prefWidth="146.0">
       <buttons>

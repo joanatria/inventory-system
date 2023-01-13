@@ -112,7 +112,7 @@ public class IngredientController implements Initializable {
     public void addButtonClicked() throws IOException, SQLException {
         addButtonIsClicked = true;
         Ingredient newIngredient = new Ingredient();
-        boolean okButtonIsClicked = main.showPopUpWindow(newIngredient);
+        boolean okButtonIsClicked = main.showAddNewWindow(newIngredient);
 
         if (okButtonIsClicked) {
             main.getIngredientData().add(newIngredient);
@@ -124,7 +124,7 @@ public class IngredientController implements Initializable {
     public void updateButtonClicked() throws IOException{
         Ingredient selectedIngredient = ingredientTable.getSelectionModel().getSelectedItem();
         if (selectedIngredient != null){
-            boolean okButtonIsClicked = main.showPopUpWindow(selectedIngredient);
+            boolean okButtonIsClicked = main.showUpdateExistingWindow(selectedIngredient);
             if (okButtonIsClicked){
                 updateSQL(selectedIngredient);
                 updateTable();
@@ -135,6 +135,24 @@ public class IngredientController implements Initializable {
             alert.setContentText("Please select an ingredient to update!");
 
             alert.show();
+        }
+    }
+
+    public void restockButtonClicked() throws IOException{
+        Ingredient ingredient = new Ingredient();;
+        boolean okButtonIsClicked = main.showRestockWindow(ingredient);
+        if (okButtonIsClicked){
+            updateSQL(ingredient);
+            updateTable();
+        }
+    }
+
+    public void itemUsageButtonClicked() throws IOException{
+        Ingredient ingredient = new Ingredient();;
+        boolean okButtonIsClicked = main.showItemUsageWindow(ingredient);
+        if (okButtonIsClicked){
+            updateSQL(ingredient);
+            updateTable();
         }
     }
 
@@ -207,8 +225,9 @@ public class IngredientController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList();
 
         try{
+            //System.out.println(SKUValue);
             connection = DriverManager.getConnection("jdbc:sqlite:inventory.db");
-            statement = connection.prepareStatement("select * from Ingredient WHERE SKU=" +SKUValue);
+            statement = connection.prepareStatement("select * from Ingredient WHERE SKU='" +SKUValue+ "'");
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()){
@@ -221,6 +240,16 @@ public class IngredientController implements Initializable {
                 list.add(rs.getString("Color"));
                 list.add(rs.getString("Type"));
                 list.add(rs.getString("Description"));
+//
+//                ingredient.setSKU(rs.getString("SKU"));
+//                ingredient.setItem(rs.getString("Item"));
+//                ingredient.setSKU(rs.getString("Category"));
+//                ingredient.setSKU(rs.getString("Brand"));
+//                ingredient.setSKU(rs.getString("Size"));
+//                ingredient.setSKU(rs.getString("Unit"));
+//                ingredient.setSKU(rs.getString("Color"));
+//                ingredient.setSKU(rs.getString("Type"));
+//                ingredient.setSKU(rs.getString("Description"));
             }
 
         } catch (SQLException e) {
