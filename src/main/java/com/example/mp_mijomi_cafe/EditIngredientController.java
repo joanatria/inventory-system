@@ -36,7 +36,7 @@ public class EditIngredientController {
     public void setIngredient(Ingredient ingredient){
         this.ingredient = ingredient;
 
-        SKUField.setText(ingredient.getSKU());
+        //SKUField.setText(ingredient.getSKU());
         itemField.setText(ingredient.getItem());
         categoryField.setText(ingredient.getCategory());
         brandField.setText(ingredient.getBrand());
