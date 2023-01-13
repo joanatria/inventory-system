@@ -9,24 +9,25 @@ public class Ingredient {
     private final StringProperty SKU;
     private final StringProperty item;
     private final StringProperty category;
+    private final StringProperty brand;
     private final IntegerProperty itemSize;
     private final StringProperty unit;
-    private final StringProperty brand;
     private final StringProperty color;
     private final StringProperty type;
     private final StringProperty description;
 
+
     public Ingredient(){
-        this(null, null, null, 0, null, null, null, null, null);
+        this(null, null, null, null, 0, null, null, null, null);
     }
 
-    public Ingredient(String SKU, String item, String category, int itemSize, String unit, String brand, String color, String type, String description) {
+    public Ingredient(String SKU, String item, String category, String brand, int size, String unit, String color, String type, String description) {
         this.SKU = new SimpleStringProperty(SKU);
         this.item = new SimpleStringProperty(item);
         this.category = new SimpleStringProperty(category);
-        this.itemSize = new SimpleIntegerProperty(itemSize);
-        this.unit = new SimpleStringProperty(unit);
         this.brand = new SimpleStringProperty(brand);
+        this.itemSize = new SimpleIntegerProperty(size);
+        this.unit = new SimpleStringProperty(unit);
         this.color = new SimpleStringProperty(color);
         this.type = new SimpleStringProperty(type);
         this.description = new SimpleStringProperty(description);
@@ -38,7 +39,7 @@ public class Ingredient {
     public String getSKU (){
         return SKU.get();
     }
-    public StringProperty SKUProperty(){
+    public StringProperty SKUProperty() {
         return SKU;
     }
 
@@ -48,7 +49,7 @@ public class Ingredient {
     public String getItem (){
         return item.get();
     }
-    public StringProperty itemProperty(){
+    public StringProperty itemProperty() {
         return item;
     }
 
@@ -58,8 +59,18 @@ public class Ingredient {
     public String getCategory (){
         return category.get();
     }
-    public StringProperty categoryProperty(){
+    public StringProperty categoryProperty() {
         return category;
+    }
+
+    public void setBrand (String brand){
+        this.brand.set(brand);
+    }
+    public String getBrand (){
+        return brand.get();
+    }
+    public StringProperty brandProperty() {
+        return brand;
     }
 
     public void setItemSize (int itemSize){
@@ -68,7 +79,7 @@ public class Ingredient {
     public int getItemSize (){
         return itemSize.get();
     }
-    public IntegerProperty itemSizeProperty(){
+    public IntegerProperty sizeProperty() {
         return itemSize;
     }
 
@@ -78,24 +89,19 @@ public class Ingredient {
     public String getUnit (){
         return unit.get();
     }
-    public StringProperty UnitProperty(){
+    public StringProperty unitProperty() {
         return unit;
     }
 
-
-
-    public void setBrand (String brand){
-        this.brand.set(brand);
-    }
-    public String getBrand (){
-        return brand.get();
-    }
 
     public void setColor (String color){
         this.color.set(color);
     }
     public String getColor (){
         return color.get();
+    }
+    public StringProperty colorProperty() {
+        return color;
     }
 
     public void setType (String type){
@@ -104,11 +110,17 @@ public class Ingredient {
     public String getType (){
         return type.get();
     }
+    public StringProperty typeProperty() {
+        return type;
+    }
 
     public void setDescription (String description){
         this.description.set(description);
     }
     public String getDescription (){
         return description.get();
+    }
+    public StringProperty descriptionProperty() {
+        return description;
     }
 }

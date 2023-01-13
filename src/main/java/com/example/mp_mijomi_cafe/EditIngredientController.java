@@ -14,7 +14,6 @@ public class EditIngredientController {
     private TextField categoryField;
     @FXML
     private TextField itemSizeField;
-
     @FXML
     private TextField unitField;
     @FXML
@@ -27,7 +26,7 @@ public class EditIngredientController {
     private TextField descriptionField;
     private Stage popUpWindow;
     private Ingredient ingredient;
-    public boolean okButtonClicked = false;
+    public boolean okButtonIsClicked = false;
     ObservableList<String> row;
 
     public void setPopUpWindow(Stage popUpWindow){
@@ -40,26 +39,29 @@ public class EditIngredientController {
         SKUField.setText(ingredient.getSKU());
         itemField.setText(ingredient.getItem());
         categoryField.setText(ingredient.getCategory());
-        itemSizeField.setText(String.valueOf(ingredient.getItemSize()));
-        unitField.setText(ingredient.getUnit());
         brandField.setText(ingredient.getBrand());
+        itemSizeField.setText(Integer.toString(ingredient.getItemSize()));
+        unitField.setText(ingredient.getUnit());
         colorField.setText(ingredient.getColor());
         typeField.setText(ingredient.getType());
         descriptionField.setText(ingredient.getDescription());
     }
 
     public void okButtonClicked(){
+
+
         ingredient.setItem(itemField.getText());
         ingredient.setCategory(categoryField.getText());
+        ingredient.setBrand(brandField.getText());
         ingredient.setItemSize(Integer.parseInt(itemSizeField.getText()));
         ingredient.setUnit(unitField.getText());
-        ingredient.setBrand(brandField.getText());
         ingredient.setColor(colorField.getText());
         ingredient.setType(typeField.getText());
-        ingredient.setDescription(ingredient.getDescription());
+        ingredient.setDescription(descriptionField.getText());
         ingredient.setSKU(IngredientController.generateSKU(ingredient));
 
-        okButtonClicked = true;
+        //ingredient.setSKU("TEST");
+        okButtonIsClicked = true;
         popUpWindow.close();
     }
 
@@ -86,9 +88,9 @@ public class EditIngredientController {
 
         itemField.setText(value1);
         categoryField.setText(value2);
-        itemSizeField.setText(value3);
-        unitField.setText(value4);
-        brandField.setText(value5);
+        brandField.setText(value3);
+        itemSizeField.setText(value4);
+        unitField.setText(value5);
         colorField.setText(value6);
         typeField.setText(value7);
         descriptionField.setText(value8);
