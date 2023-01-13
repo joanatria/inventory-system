@@ -57,25 +57,81 @@ public class Main extends Application {
      *
      * Loads the addNew.fxml file as a popUpWindow
      */
-    public boolean showPopUpWindow(Ingredient ingredient) throws IOException{
+    public boolean showAddNewWindow(Ingredient ingredient) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("addNew.fxml"));
         Parent root = loader.load();
 
         Stage popUpWindow = new Stage();
         Scene scene = new Scene(root);
 
-        EditIngredientController editIngredientControl = loader.getController();
-        editIngredientControl.setPopUpWindow(popUpWindow);
-        editIngredientControl.setIngredient(ingredient);
+        addNewController control = loader.getController();
+        control.setPopUpWindow(popUpWindow);
+        control.setIngredient(ingredient);
 
         popUpWindow.setScene(scene);
         popUpWindow.showAndWait();
         popUpWindow.setResizable(false);
         popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
 
-        return editIngredientControl.okButtonIsClicked;
+        return control.okButtonIsClicked;
     }
 
+    public boolean showUpdateExistingWindow(Ingredient ingredient) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("updateExisting.fxml"));
+        Parent root = loader.load();
+
+        Stage popUpWindow = new Stage();
+        Scene scene = new Scene(root);
+
+        updateExistingController control = loader.getController();
+        control.setPopUpWindow(popUpWindow);
+        control.setIngredient(ingredient);
+
+        popUpWindow.setScene(scene);
+        popUpWindow.showAndWait();
+        popUpWindow.setResizable(false);
+        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
+
+        return control.okButtonIsClicked;
+    }
+
+    public boolean showRestockWindow(Ingredient ingredient) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("restock.fxml"));
+        Parent root = loader.load();
+
+        Stage popUpWindow = new Stage();
+        Scene scene = new Scene(root);
+
+        restockController control = loader.getController();
+        control.setPopUpWindow(popUpWindow);
+        control.setIngredient(ingredient);
+
+        popUpWindow.setScene(scene);
+        popUpWindow.showAndWait();
+        popUpWindow.setResizable(false);
+        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
+
+        return control.okButtonIsClicked;
+    }
+
+    public boolean showItemUsageWindow(Ingredient ingredient) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("itemUsage.fxml"));
+        Parent root = loader.load();
+
+        Stage popUpWindow = new Stage();
+        Scene scene = new Scene(root);
+
+        itemUsageController control = loader.getController();
+        control.setPopUpWindow(popUpWindow);
+        control.setIngredient(ingredient);
+
+        popUpWindow.setScene(scene);
+        popUpWindow.showAndWait();
+        popUpWindow.setResizable(false);
+        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
+
+        return control.okButtonIsClicked;
+    }
     public static void main(String[] args) {
         launch(args);
     }
