@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -19,11 +20,24 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("start-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Machine Problem : MiJoMi Inventory");
+//        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("start-view.fxml"));
+//        Scene scene = new Scene(fxmlLoader.load(), 710, 500);
+//        stage.setTitle("Machine Problem : MiJoMi Inventory");
+//        stage.setScene(scene);
+//        stage.setResizable(false);
+//        stage.show();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("start-view.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
+        stage.getIcons().add(new Image (Main.class.getResourceAsStream("icon.png")));
+
+        IngredientController ingredientControl = loader.getController();
+        ingredientControl.setMain(this);
     }
 
     public boolean showPopUpWindow(Ingredient ingredient) throws IOException{
@@ -38,6 +52,7 @@ public class Main extends Application {
         editIngredientControl.setIngredient(ingredient);
 
         popUpWindow.setScene(scene);
+        popUpWindow.getIcons().add(new Image (Main.class.getResourceAsStream("icon.png")));
         popUpWindow.showAndWait();
 
         return editIngredientControl.okButtonClicked;

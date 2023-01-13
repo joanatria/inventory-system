@@ -57,7 +57,7 @@ public class EditIngredientController {
         ingredient.setColor(colorField.getText());
         ingredient.setType(typeField.getText());
         ingredient.setDescription(ingredient.getDescription());
-        //ingredient.setSKU(IngredientController.generateSKU(ingredient));
+        ingredient.setSKU(IngredientController.generateSKU(ingredient));
 
         okButtonClicked = true;
         popUpWindow.close();
