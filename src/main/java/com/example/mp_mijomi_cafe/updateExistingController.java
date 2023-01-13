@@ -2,6 +2,7 @@ package com.example.mp_mijomi_cafe;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -41,11 +42,16 @@ public class updateExistingController {
         SKU = ingredient.getSKU();
         item = ingredient.getItem();
         category = ingredient.getCategory();
-
         itemLabel.setText(item);
         categoryLabel.setText(category);
         brandField.setText(ingredient.getBrand());
-        itemSizeField.setText(Integer.toString(ingredient.getItemSize()));
+        if(Character.isDigit((char) ingredient.getItemSize())){
+            itemSizeField.setText(Double.toString(ingredient.getItemSize()));
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Incorrect input. Numerical values only.");
+            alert.show();
+        }
         unitField.setText(ingredient.getUnit());
         colorField.setText(ingredient.getColor());
         typeField.setText(ingredient.getType());

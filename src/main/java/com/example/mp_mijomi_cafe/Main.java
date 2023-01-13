@@ -132,6 +132,26 @@ public class Main extends Application {
 
         return control.okButtonIsClicked;
     }
+
+    public boolean showBulkImportWindow(Ingredient ingredient) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("import.fxml"));
+        Parent root = loader.load();
+
+        Stage popUpWindow = new Stage();
+        Scene scene = new Scene(root);
+
+        bulkController control = loader.getController();
+        control.setPopUpWindow(popUpWindow);
+        control.setIngredient(ingredient);
+
+        popUpWindow.setScene(scene);
+        popUpWindow.showAndWait();
+        popUpWindow.setResizable(false);
+        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
+
+        return control.okButtonIsClicked;
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

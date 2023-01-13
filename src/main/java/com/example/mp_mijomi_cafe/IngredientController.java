@@ -58,6 +58,15 @@ public class IngredientController implements Initializable {
         //ingredientTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> editIngredientController());
     }
 
+    public void importButtonClicked() throws IOException{
+        Ingredient ingredient = new Ingredient();
+        boolean okButtonIsClicked = main.showBulkImportWindow(ingredient);
+        if (okButtonIsClicked){
+            updateSQL(ingredient);
+            updateTable();
+        }
+    }
+
     public static String generateSKU(Ingredient ingredient){
 
         String item = ingredient.getItem();
@@ -343,6 +352,5 @@ public class IngredientController implements Initializable {
 
         listIngredient = loadIngredients();
         ingredientTable.setItems(listIngredient);
-
     }
 }

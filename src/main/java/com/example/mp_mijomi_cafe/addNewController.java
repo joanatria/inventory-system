@@ -2,12 +2,11 @@ package com.example.mp_mijomi_cafe;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class addNewController {
-    @FXML
-    private TextField SKUField;
     @FXML
     private TextField itemField;
     @FXML
@@ -27,7 +26,6 @@ public class addNewController {
     private Stage popUpWindow;
     private Ingredient ingredient;
     public boolean okButtonIsClicked = false;
-    ObservableList<String> row;
 
     public void setPopUpWindow(Stage popUpWindow){
         this.popUpWindow = popUpWindow;
@@ -36,11 +34,16 @@ public class addNewController {
     public void setIngredient(Ingredient ingredient){
         this.ingredient = ingredient;
 
-        //SKUField.setText(ingredient.getSKU());
         itemField.setText(ingredient.getItem());
         categoryField.setText(ingredient.getCategory());
         brandField.setText(ingredient.getBrand());
-        itemSizeField.setText(Integer.toString(ingredient.getItemSize()));
+        if(Character.isDigit((char) ingredient.getItemSize())){
+            itemSizeField.setText(Double.toString(ingredient.getItemSize()));
+        }else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Incorrect input. Numerical values only.");
+            alert.show();
+        }
         unitField.setText(ingredient.getUnit());
         colorField.setText(ingredient.getColor());
         typeField.setText(ingredient.getType());
@@ -48,51 +51,46 @@ public class addNewController {
     }
 
     public void okButtonClicked(){
-
-
-        ingredient.setItem(itemField.getText());
-        ingredient.setCategory(categoryField.getText());
-        ingredient.setBrand(brandField.getText());
-        ingredient.setItemSize(Integer.parseInt(itemSizeField.getText()));
-        ingredient.setUnit(unitField.getText());
-        ingredient.setColor(colorField.getText());
-        ingredient.setType(typeField.getText());
-        ingredient.setDescription(descriptionField.getText());
-        ingredient.setSKU(IngredientController.generateSKU(ingredient));
-
-        //ingredient.setSKU("TEST");
-        okButtonIsClicked = true;
-        popUpWindow.close();
+        if(itemField.getText() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill in the required fields (*).");
+            alert.show();
+        } else if (categoryField.getText() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill in the required fields (*).");
+            alert.show();
+        } else if (brandField.getText() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill in the required fields (*).");
+            alert.show();
+        }else if (itemSizeField.getText() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill in the required fields (*).");
+            alert.show();
+        }else if (unitField.getText() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fill in the required fields (*).");
+            alert.show();
+        }else if ((Integer.parseInt(itemSizeField.getText())) < 0){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Incorrect input. No negative inputs allowed.");
+            alert.show();
+        }else{
+            ingredient.setItem(itemField.getText());
+            ingredient.setCategory(categoryField.getText());
+            ingredient.setBrand(brandField.getText());
+            ingredient.setItemSize(Integer.parseInt(itemSizeField.getText()));
+            ingredient.setUnit(unitField.getText());
+            ingredient.setColor(colorField.getText());
+            ingredient.setType(typeField.getText());
+            ingredient.setDescription(descriptionField.getText());
+            ingredient.setSKU(IngredientController.generateSKU(ingredient));
+            okButtonIsClicked = true;
+            popUpWindow.close();
+        }
     }
 
     public void cancelButtonClicked(){
         popUpWindow.close();
     }
-
-//    public void SKUButtonClicked(){
-//        Ingredient ingredient = new Ingredient();
-//        ingredient.setSKU(SKUField.getText());
-//        System.out.println(ingredient.getSKU());
-//
-//        row = IngredientController.selectSQL(SKUField.getText());
-//
-//        System.out.println(row);
-//        String value1 = String.valueOf(row.get(1));
-//        String value2 = String.valueOf(row.get(2));
-//        String value3 = String.valueOf(row.get(3));
-//        String value4 = String.valueOf(row.get(4));
-//        String value5 = String.valueOf(row.get(5));
-//        String value6 = String.valueOf(row.get(6));
-//        String value7 = String.valueOf(row.get(7));
-//        String value8 = String.valueOf(row.get(8));
-//
-//        itemField.setText(value1);
-//        categoryField.setText(value2);
-//        brandField.setText(value3);
-//        itemSizeField.setText(value4);
-//        unitField.setText(value5);
-//        colorField.setText(value6);
-//        typeField.setText(value7);
-//        descriptionField.setText(value8);
-//    }
 }

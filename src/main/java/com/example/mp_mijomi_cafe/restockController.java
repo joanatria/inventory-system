@@ -2,9 +2,12 @@ package com.example.mp_mijomi_cafe;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.util.InputMismatchException;
 
 public class restockController {
     @FXML
@@ -48,19 +51,30 @@ public class restockController {
         amountAdded = Integer.parseInt(addAmountField.getText());
         origAmount = Integer.parseInt(itemSizeLabel.getText());
         newAmount = amountAdded + origAmount;
+        try {
+            if (amountAdded < 0) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Incorrect input. No negative inputs allowed.");
+                alert.show();
+            } else {
+                ingredient.setSKU(SKUField.getText());
+                ingredient.setItem(itemLabel.getText());
+                ingredient.setCategory(categoryLabel.getText());
+                ingredient.setBrand(brandLabel.getText());
+                ingredient.setItemSize(newAmount);
+                ingredient.setUnit(unitLabel.getText());
+                ingredient.setColor(colorLabel.getText());
+                ingredient.setType(typeLabel.getText());
+                ingredient.setDescription(descriptionLabel.getText());
 
-        ingredient.setSKU(SKUField.getText());
-        ingredient.setItem(itemLabel.getText());
-        ingredient.setCategory(categoryLabel.getText());
-        ingredient.setBrand(brandLabel.getText());
-        ingredient.setItemSize(newAmount);
-        ingredient.setUnit(unitLabel.getText());
-        ingredient.setColor(colorLabel.getText());
-        ingredient.setType(typeLabel.getText());
-        ingredient.setDescription(descriptionLabel.getText());
-
-        okButtonIsClicked = true;
-        popUpWindow.close();
+                okButtonIsClicked = true;
+                popUpWindow.close();
+            }
+        }catch(InputMismatchException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Incorrect input. Numerical inputs only.");
+            alert.show();
+        }
     }
 
     public void cancelButtonClicked(){
