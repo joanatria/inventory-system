@@ -146,7 +146,6 @@ public class Main extends Application {
 
         bulkController control = loader.getController();
         control.setPopUpWindow(popUpWindow);
-        control.setIngredient(ingredient);
 
         popUpWindow.setScene(scene);
         popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));

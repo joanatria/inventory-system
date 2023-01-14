@@ -54,19 +54,7 @@ public class IngredientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         updateTable();
-        //showIngredientDetails(null);
-        //ingredientTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> editIngredientController());
-    }
-
-    public void importButtonClicked() throws IOException {
-        Ingredient ingredient = new Ingredient();
-        boolean okButtonIsClicked = main.showBulkImportWindow(ingredient);
-        if (okButtonIsClicked) {
-            updateSQL(ingredient);
-            updateTable();
-        }
     }
 
     public static String generateSKU(Ingredient ingredient) {
@@ -181,6 +169,15 @@ public class IngredientController implements Initializable {
         }
     }
 
+    public void importButtonClicked() throws IOException {
+        Ingredient ingredient = new Ingredient();
+        boolean okButtonIsClicked = main.showBulkImportWindow(ingredient);
+        if (okButtonIsClicked) {
+            //updateSQL(ingredient);
+            updateTable();
+        }
+    }
+
     public static ObservableList<Ingredient> loadIngredients() {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -192,7 +189,7 @@ public class IngredientController implements Initializable {
             ResultSet rs = statement.executeQuery();
 
             while (rs.next()) {
-                list.add(new Ingredient(rs.getString("SKU"), rs.getString("Item"), rs.getString("Category"), rs.getString("Brand"), rs.getInt("Size"), rs.getString("Unit"), rs.getString("Color"), rs.getString("Type"), rs.getString("Description")));
+                list.add(new Ingredient(rs.getString("SKU"), rs.getString("Item"), rs.getString("Category"), rs.getString("Brand"), rs.getInt("Amount"), rs.getString("Unit"), rs.getString("Color"), rs.getString("Type"), rs.getString("Description")));
             }
         } catch (Exception e) {
 
@@ -204,7 +201,7 @@ public class IngredientController implements Initializable {
         Connection connection = null;
         PreparedStatement statement = null;
 
-        final String SQL_INSERT = "INSERT INTO Ingredient (SKU, Item, Category, Brand, Size, Unit, Color, Type, Description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        final String SQL_INSERT = "INSERT INTO Ingredient (SKU, Item, Category, Brand, Amount, Unit, Color, Type, Description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
             connection = DriverManager.getConnection("jdbc:sqlite:inventory.db");
@@ -243,7 +240,6 @@ public class IngredientController implements Initializable {
         ObservableList<String> list = FXCollections.observableArrayList();
 
         try {
-            //System.out.println(SKUValue);
             connection = DriverManager.getConnection("jdbc:sqlite:inventory.db");
             statement = connection.prepareStatement("select * from Ingredient WHERE SKU='" + SKUValue + "'");
             ResultSet rs = statement.executeQuery();
@@ -253,21 +249,12 @@ public class IngredientController implements Initializable {
                 list.add(rs.getString("Item"));
                 list.add(rs.getString("Category"));
                 list.add(rs.getString("Brand"));
-                list.add(Integer.toString(rs.getInt("Size")));
+                list.add(Integer.toString(rs.getInt("Amount")));
                 list.add(rs.getString("Unit"));
                 list.add(rs.getString("Color"));
                 list.add(rs.getString("Type"));
                 list.add(rs.getString("Description"));
-//
-//                ingredient.setSKU(rs.getString("SKU"));
-//                ingredient.setItem(rs.getString("Item"));
-//                ingredient.setSKU(rs.getString("Category"));
-//                ingredient.setSKU(rs.getString("Brand"));
-//                ingredient.setSKU(rs.getString("Size"));
-//                ingredient.setSKU(rs.getString("Unit"));
-//                ingredient.setSKU(rs.getString("Color"));
-//                ingredient.setSKU(rs.getString("Type"));
-//                ingredient.setSKU(rs.getString("Description"));
+
             }
 
         } catch (SQLException e) {
@@ -305,7 +292,7 @@ public class IngredientController implements Initializable {
             System.out.println(value2);
             System.out.println(value3);
 
-            final String SQL_UPDATE = "UPDATE Ingredient set SKU='" + value1 + "', Item='" + value2 + "', Category='" + value3 + "', Brand='" + value4 + "', Size='" + value5 + "', Unit='" + value6 + "', Color='" + value7 + "', Type='" + value8 + "', Description='" + value9 + "' WHERE SKU='" + value1 + "'";
+            final String SQL_UPDATE = "UPDATE Ingredient set SKU='" + value1 + "', Item='" + value2 + "', Category='" + value3 + "', Brand='" + value4 + "', Amount='" + value5 + "', Unit='" + value6 + "', Color='" + value7 + "', Type='" + value8 + "', Description='" + value9 + "' WHERE SKU='" + value1 + "'";
 
             statement = connection.prepareStatement(SQL_UPDATE);
             statement.executeUpdate();
