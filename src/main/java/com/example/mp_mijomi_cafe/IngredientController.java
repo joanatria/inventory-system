@@ -1,5 +1,6 @@
 package com.example.mp_mijomi_cafe;
 
+import javafx.application.HostServices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -45,7 +47,7 @@ public class IngredientController implements Initializable {
     private Stage popUpWindow;
     ObservableList<Ingredient> listIngredient;
 
-    public void setMain(Main main){
+    public void setMain(Main main) {
         this.main = main;
         ingredientTable.setItems(main.getIngredientData());
     }
@@ -58,7 +60,16 @@ public class IngredientController implements Initializable {
         //ingredientTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> editIngredientController());
     }
 
-    public static String generateSKU(Ingredient ingredient){
+    public void importButtonClicked() throws IOException {
+        Ingredient ingredient = new Ingredient();
+        boolean okButtonIsClicked = main.showBulkImportWindow(ingredient);
+        if (okButtonIsClicked) {
+            updateSQL(ingredient);
+            updateTable();
+        }
+    }
+
+    public static String generateSKU(Ingredient ingredient) {
 
         String item = ingredient.getItem();
         String category = ingredient.getCategory();
@@ -83,9 +94,9 @@ public class IngredientController implements Initializable {
         }
 
         char first = trcategory.charAt(0);
-        char last = trcategory.charAt(category.length()-1);
+        char last = trcategory.charAt(category.length() - 1);
         char fitem = tritem.charAt(0);
-        char litem = tritem.charAt(item.length()-1);
+        char litem = tritem.charAt(item.length() - 1);
         StringBuilder sku = new StringBuilder();
         sku.append(first);
         sku.append(last);
@@ -93,13 +104,13 @@ public class IngredientController implements Initializable {
         sku.append(litem);
         sku.append("-");
 
-        int randomNum = (int)Math.floor(Math.random() * (9999 - 0000 + 1) + 0000);
+        int randomNum = (int) Math.floor(Math.random() * (9999 - 0000 + 1) + 0000);
         String randNum = String.valueOf(randomNum);
-        if (randNum.length() == 4){
+        if (randNum.length() == 4) {
             sku.append(randNum);
-        }else if (randNum.length() < 4 && randNum.length() >-1){
+        } else if (randNum.length() < 4 && randNum.length() > -1) {
             int len = 4 - randNum.length();
-            for(int i = 0; i < len; i++){
+            for (int i = 0; i < len; i++) {
                 sku.append(0);
             }
             sku.append(randNum);
@@ -121,16 +132,15 @@ public class IngredientController implements Initializable {
         }
     }
 
-    public void updateButtonClicked() throws IOException{
+    public void updateButtonClicked() throws IOException {
         Ingredient selectedIngredient = ingredientTable.getSelectionModel().getSelectedItem();
-        if (selectedIngredient != null){
+        if (selectedIngredient != null) {
             boolean okButtonIsClicked = main.showUpdateExistingWindow(selectedIngredient);
-            if (okButtonIsClicked){
+            if (okButtonIsClicked) {
                 updateSQL(selectedIngredient);
                 updateTable();
             }
-        }
-        else {
+        } else {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Please select an ingredient to update!");
 
@@ -138,45 +148,53 @@ public class IngredientController implements Initializable {
         }
     }
 
-    public void restockButtonClicked() throws IOException{
-        Ingredient ingredient = new Ingredient();;
+    public void restockButtonClicked() throws IOException {
+        Ingredient ingredient = new Ingredient();
+        ;
         boolean okButtonIsClicked = main.showRestockWindow(ingredient);
-        if (okButtonIsClicked){
+        if (okButtonIsClicked) {
             updateSQL(ingredient);
             updateTable();
         }
     }
 
-    public void itemUsageButtonClicked() throws IOException{
-        Ingredient ingredient = new Ingredient();;
+    public void itemUsageButtonClicked() throws IOException {
+        Ingredient ingredient = new Ingredient();
+        ;
         boolean okButtonIsClicked = main.showItemUsageWindow(ingredient);
-        if (okButtonIsClicked){
+        if (okButtonIsClicked) {
             updateSQL(ingredient);
             updateTable();
         }
     }
 
     public void deleteButtonClicked() throws IOException {
-        int indexToDelete = ingredientTable.getSelectionModel().getSelectedIndex();
-        deleteFromSQL(ingredientTable.getSelectionModel().getSelectedItem());
-        ingredientTable.getItems().remove(indexToDelete);
-        updateTable();
+        try{
+            int indexToDelete = ingredientTable.getSelectionModel().getSelectedIndex();
+            deleteFromSQL(ingredientTable.getSelectionModel().getSelectedItem());
+            ingredientTable.getItems().remove(indexToDelete);
+            updateTable();
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please select an ingredient to delete.");
+            alert.show();
+        }
     }
 
-    public static ObservableList<Ingredient> loadIngredients(){
+    public static ObservableList<Ingredient> loadIngredients() {
         Connection connection = null;
         PreparedStatement statement = null;
 
         ObservableList<Ingredient> list = FXCollections.observableArrayList();
-        try{
+        try {
             connection = DriverManager.getConnection("jdbc:sqlite:inventory.db");
             statement = connection.prepareStatement("select * from Ingredient");
             ResultSet rs = statement.executeQuery();
 
-            while (rs.next()){
+            while (rs.next()) {
                 list.add(new Ingredient(rs.getString("SKU"), rs.getString("Item"), rs.getString("Category"), rs.getString("Brand"), rs.getInt("Size"), rs.getString("Unit"), rs.getString("Color"), rs.getString("Type"), rs.getString("Description")));
             }
-        } catch (Exception e){
+        } catch (Exception e) {
 
         }
         return list;
@@ -189,7 +207,7 @@ public class IngredientController implements Initializable {
         final String SQL_INSERT = "INSERT INTO Ingredient (SKU, Item, Category, Brand, Size, Unit, Color, Type, Description) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:inventory.db") ;
+            connection = DriverManager.getConnection("jdbc:sqlite:inventory.db");
 
             statement = connection.prepareStatement(SQL_INSERT);
 
@@ -218,19 +236,19 @@ public class IngredientController implements Initializable {
         }
     }
 
-    public static ObservableList<String> selectSQL(String SKUValue){
+    public static ObservableList<String> selectSQL(String SKUValue) {
         Connection connection = null;
         PreparedStatement statement = null;
 
         ObservableList<String> list = FXCollections.observableArrayList();
 
-        try{
+        try {
             //System.out.println(SKUValue);
             connection = DriverManager.getConnection("jdbc:sqlite:inventory.db");
-            statement = connection.prepareStatement("select * from Ingredient WHERE SKU='" +SKUValue+ "'");
+            statement = connection.prepareStatement("select * from Ingredient WHERE SKU='" + SKUValue + "'");
             ResultSet rs = statement.executeQuery();
 
-            while (rs.next()){
+            while (rs.next()) {
                 list.add(rs.getString("SKU"));
                 list.add(rs.getString("Item"));
                 list.add(rs.getString("Category"));
@@ -266,7 +284,7 @@ public class IngredientController implements Initializable {
         return list;
     }
 
-    public static void updateSQL(Ingredient ingredient){
+    public static void updateSQL(Ingredient ingredient) {
         Connection connection = null;
         PreparedStatement statement = null;
 
@@ -287,7 +305,7 @@ public class IngredientController implements Initializable {
             System.out.println(value2);
             System.out.println(value3);
 
-            final String SQL_UPDATE = "UPDATE Ingredient set SKU='"+ value1 +"', Item='"+ value2 +"', Category='"+value3+"', Brand='"+value4+"', Size='"+value5+"', Unit='"+value6+"', Color='"+value7+"', Type='"+value8+"', Description='"+value9+"' WHERE SKU='"+value1+"'";
+            final String SQL_UPDATE = "UPDATE Ingredient set SKU='" + value1 + "', Item='" + value2 + "', Category='" + value3 + "', Brand='" + value4 + "', Size='" + value5 + "', Unit='" + value6 + "', Color='" + value7 + "', Type='" + value8 + "', Description='" + value9 + "' WHERE SKU='" + value1 + "'";
 
             statement = connection.prepareStatement(SQL_UPDATE);
             statement.executeUpdate();
@@ -311,7 +329,7 @@ public class IngredientController implements Initializable {
         final String SQL_DELETE = "DELETE FROM Ingredient WHERE SKU = ?";
 
         try {
-            connection = DriverManager.getConnection("jdbc:sqlite:inventory.db") ;
+            connection = DriverManager.getConnection("jdbc:sqlite:inventory.db");
 
             statement = connection.prepareStatement(SQL_DELETE);
             statement.setString(1, ingredient.getSKU());
@@ -330,6 +348,7 @@ public class IngredientController implements Initializable {
             }
         }
     }
+
     public void updateTable() {
         SKUColumn.setCellValueFactory(cellData -> cellData.getValue().SKUProperty());
         itemColumn.setCellValueFactory(cellData -> cellData.getValue().itemProperty());
@@ -343,6 +362,10 @@ public class IngredientController implements Initializable {
 
         listIngredient = loadIngredients();
         ingredientTable.setItems(listIngredient);
+    }
 
+    public void openPDF(){
+        main.pdf();
     }
 }
+
