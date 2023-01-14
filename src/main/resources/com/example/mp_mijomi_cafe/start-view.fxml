@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="710.0" style="-fx-background-color: #FFFDFB;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mp_mijomi_cafe.IngredientController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="710.0" style="-fx-background-color: #FFFDFB;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mp_mijomi_cafe.IngredientController">
     <children>
         <ImageView fx:id="mijomilogo" fitHeight="70.0" fitWidth="365.0" layoutX="182.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="430.0" AnchorPane.leftAnchor="182.0" AnchorPane.rightAnchor="181.65670776367188" AnchorPane.topAnchor="0.0">
             <image>
@@ -259,8 +265,8 @@
                                              <TableColumn fx:id="itemSizeColumn" prefWidth="63.20001220703125" text="Amount" />
                                           <TableColumn fx:id="unitColumn" prefWidth="35.5" text="Units" />
                                           <TableColumn fx:id="colorColumn" prefWidth="83.0" text="Color" />
-                                          <TableColumn fx:id="typeColumn" prefWidth="95.0" text="Type" />
-                                          <TableColumn fx:id="descriptionColumn" prefWidth="119.2000732421875" text="Description" />
+                                          <TableColumn fx:id="typeColumn" prefWidth="85.0" text="Type" />
+                                          <TableColumn fx:id="descriptionColumn" prefWidth="129.5" text="Description" />
                                          </columns>
                                      </TableView>
                                  </children>
