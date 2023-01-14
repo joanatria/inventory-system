@@ -82,27 +82,33 @@ public class restockController {
     }
 
     public void searchButtonClicked(){
-        Ingredient ingredient = new Ingredient();
-        ingredient.setSKU(SKUField.getText());
+        try{
+            Ingredient ingredient = new Ingredient();
+            ingredient.setSKU(SKUField.getText());
 
-        row = IngredientController.selectSQL(SKUField.getText());
+            row = IngredientController.selectSQL(SKUField.getText());
 
-        String value1 = String.valueOf(row.get(1));
-        String value2 = String.valueOf(row.get(2));
-        String value3 = String.valueOf(row.get(3));
-        String value4 = String.valueOf(row.get(4));
-        String value5 = String.valueOf(row.get(5));
-        String value6 = String.valueOf(row.get(6));
-        String value7 = String.valueOf(row.get(7));
-        String value8 = String.valueOf(row.get(8));
+            String value1 = String.valueOf(row.get(1));
+            String value2 = String.valueOf(row.get(2));
+            String value3 = String.valueOf(row.get(3));
+            String value4 = String.valueOf(row.get(4));
+            String value5 = String.valueOf(row.get(5));
+            String value6 = String.valueOf(row.get(6));
+            String value7 = String.valueOf(row.get(7));
+            String value8 = String.valueOf(row.get(8));
 
-        itemLabel.setText(value1);
-        categoryLabel.setText(value2);
-        brandLabel.setText(value3);
-        itemSizeLabel.setText(value4);
-        unitLabel.setText(value5);
-        colorLabel.setText(value6);
-        typeLabel.setText(value7);
-        descriptionLabel.setText(value8);
+            itemLabel.setText(value1);
+            categoryLabel.setText(value2);
+            brandLabel.setText(value3);
+            itemSizeLabel.setText(value4);
+            unitLabel.setText(value5);
+            colorLabel.setText(value6);
+            typeLabel.setText(value7);
+            descriptionLabel.setText(value8);
+        }catch(IndexOutOfBoundsException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Incorrect input. Input a valid SKU code");
+            alert.show();
+        }
     }
 }

@@ -45,13 +45,7 @@ public class updateExistingController {
         itemLabel.setText(item);
         categoryLabel.setText(category);
         brandField.setText(ingredient.getBrand());
-        if(Character.isDigit((char) ingredient.getItemSize())){
-            itemSizeField.setText(Integer.toString(ingredient.getItemSize()));
-        }else{
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Incorrect input. Numerical values only.");
-            alert.show();
-        }
+        itemSizeField.setText(Integer.toString(ingredient.getItemSize()));
         unitField.setText(ingredient.getUnit());
         colorField.setText(ingredient.getColor());
         typeField.setText(ingredient.getType());
@@ -59,18 +53,29 @@ public class updateExistingController {
     }
 
     public void okButtonClicked(){
-        ingredient.setSKU(SKU);
-        ingredient.setItem(item);
-        ingredient.setCategory(category);
-        ingredient.setBrand(brandField.getText());
-        ingredient.setItemSize(Integer.parseInt(itemSizeField.getText()));
-        ingredient.setUnit(unitField.getText());
-        ingredient.setColor(colorField.getText());
-        ingredient.setType(typeField.getText());
-        ingredient.setDescription(descriptionField.getText());
-
-        okButtonIsClicked = true;
-        popUpWindow.close();
+        try{
+            if ((Integer.parseInt(itemSizeField.getText())) < 0){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Incorrect input. No negative inputs allowed.");
+                alert.show();
+            }else {
+                ingredient.setSKU(SKU);
+                ingredient.setItem(item);
+                ingredient.setCategory(category);
+                ingredient.setBrand(brandField.getText());
+                ingredient.setItemSize(Integer.parseInt(itemSizeField.getText()));
+                ingredient.setUnit(unitField.getText());
+                ingredient.setColor(colorField.getText());
+                ingredient.setType(typeField.getText());
+                ingredient.setDescription(descriptionField.getText());
+                okButtonIsClicked = true;
+                popUpWindow.close();
+            }
+        }catch(NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Incorrect input. Numerical values only.");
+            alert.show();
+        }
     }
 
     public void cancelButtonClicked(){

@@ -169,10 +169,16 @@ public class IngredientController implements Initializable {
     }
 
     public void deleteButtonClicked() throws IOException {
-        int indexToDelete = ingredientTable.getSelectionModel().getSelectedIndex();
-        deleteFromSQL(ingredientTable.getSelectionModel().getSelectedItem());
-        ingredientTable.getItems().remove(indexToDelete);
-        updateTable();
+        try{
+            int indexToDelete = ingredientTable.getSelectionModel().getSelectedIndex();
+            deleteFromSQL(ingredientTable.getSelectionModel().getSelectedItem());
+            ingredientTable.getItems().remove(indexToDelete);
+            updateTable();
+        }catch (NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please select an ingredient to delete.");
+            alert.show();
+        }
     }
 
     public static ObservableList<Ingredient> loadIngredients() {

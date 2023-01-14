@@ -45,61 +45,53 @@ public class addNewController {
     }
 
     public void okButtonClicked(){
-        if(itemField.getText() == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Please fill in the required fields (*).");
-            alert.show();
-        } else if (categoryField.getText() == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Please fill in the required fields (*).");
-            alert.show();
-        } else if (brandField.getText() == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Please fill in the required fields (*).");
-            alert.show();
-        }else if (itemSizeField.getText() == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Please fill in the required fields (*).");
-            alert.show();
-        }else if (unitField.getText() == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Please fill in the required fields (*).");
-            alert.show();
-        }else if ((Integer.parseInt(itemSizeField.getText())) < 0){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Incorrect input. No negative inputs allowed.");
-            alert.show();
-        }else if(Character.isLetter((char) ingredient.getItemSize())){
+        try{
+            if(itemField.getText() == null){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Please fill in the required fields (*).");
+                alert.show();
+            } else if (categoryField.getText() == null){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Please fill in the required fields (*).");
+                alert.show();
+            } else if (brandField.getText() == null){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Please fill in the required fields (*).");
+                alert.show();
+            }else if (itemSizeField.getText() == null){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Please fill in the required fields (*).");
+                alert.show();
+            }else if (unitField.getText() == null){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Please fill in the required fields (*).");
+                alert.show();
+            }else if ((Integer.parseInt(itemSizeField.getText())) < 0){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Incorrect input. No negative inputs allowed.");
+                alert.show();
+            }else if(Character.isLetter((char) ingredient.getItemSize())){
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Incorrect input. Numerical values only.");
+                alert.show();
+            }else{
+                ingredient.setItem(itemField.getText());
+                ingredient.setCategory(categoryField.getText());
+                ingredient.setBrand(brandField.getText());
+                ingredient.setItemSize(Integer.parseInt(itemSizeField.getText()));
+                ingredient.setUnit(unitField.getText());
+                ingredient.setColor(colorField.getText());
+                ingredient.setType(typeField.getText());
+                ingredient.setDescription(descriptionField.getText());
+                ingredient.setSKU(IngredientController.generateSKU(ingredient));
+                okButtonIsClicked = true;
+                popUpWindow.close();
+            }
+        }catch (NumberFormatException e){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Incorrect input. Numerical values only.");
             alert.show();
-        }else{
-            ingredient.setItem(itemField.getText());
-            ingredient.setCategory(categoryField.getText());
-            ingredient.setBrand(brandField.getText());
-            ingredient.setItemSize(Integer.parseInt(itemSizeField.getText()));
-            ingredient.setUnit(unitField.getText());
-            ingredient.setColor(colorField.getText());
-            ingredient.setType(typeField.getText());
-            ingredient.setDescription(descriptionField.getText());
-            ingredient.setSKU(IngredientController.generateSKU(ingredient));
-            okButtonIsClicked = true;
-            popUpWindow.close();
         }
-
-
-        ingredient.setItem(itemField.getText());
-        ingredient.setCategory(categoryField.getText());
-        ingredient.setBrand(brandField.getText());
-        ingredient.setItemSize(Integer.parseInt(itemSizeField.getText()));
-        ingredient.setUnit(unitField.getText());
-        ingredient.setColor(colorField.getText());
-        ingredient.setType(typeField.getText());
-        ingredient.setDescription(descriptionField.getText());
-        ingredient.setSKU(IngredientController.generateSKU(ingredient));
-
-        okButtonIsClicked = true;
-        popUpWindow.close();
     }
 
     public void cancelButtonClicked(){
