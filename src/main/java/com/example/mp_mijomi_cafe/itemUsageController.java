@@ -53,12 +53,11 @@ public class itemUsageController {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Incorrect input. Usage exceeds the original amount.");
             alert.show();
-        } else if(itemUsage < 0){
+        } else if(itemUsage < 0) {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Incorrect input. No negative inputs allowed.");
             alert.show();
-        }
-        else{
+        } else{
             ingredient.setSKU(SKUField.getText());
             ingredient.setItem(itemLabel.getText());
             ingredient.setCategory(categoryLabel.getText());
@@ -69,9 +68,8 @@ public class itemUsageController {
             ingredient.setType(typeLabel.getText());
             ingredient.setDescription(descriptionLabel.getText());
 
-            okButtonIsClicked = true;
             popUpWindow.close();
-        }
+        }okButtonIsClicked = true;
     }
 
     public void cancelButtonClicked(){

@@ -68,9 +68,9 @@ public class updateExistingController {
                 ingredient.setColor(colorField.getText());
                 ingredient.setType(typeField.getText());
                 ingredient.setDescription(descriptionField.getText());
-                okButtonIsClicked = true;
+
                 popUpWindow.close();
-            }
+            }okButtonIsClicked = true;
         }catch(NumberFormatException e){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Incorrect input. Numerical values only.");

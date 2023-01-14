@@ -67,9 +67,8 @@ public class restockController {
                 ingredient.setType(typeLabel.getText());
                 ingredient.setDescription(descriptionLabel.getText());
 
-                okButtonIsClicked = true;
                 popUpWindow.close();
-            }
+            }okButtonIsClicked = true;
         }catch(InputMismatchException e){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Incorrect input. Numerical inputs only.");

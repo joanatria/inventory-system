@@ -84,6 +84,7 @@ public class addNewController {
                 ingredient.setType(typeField.getText());
                 ingredient.setDescription(descriptionField.getText());
                 ingredient.setSKU(IngredientController.generateSKU(ingredient));
+
                 okButtonIsClicked = true;
                 popUpWindow.close();
             }
@@ -91,8 +92,13 @@ public class addNewController {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Incorrect input. Numerical values only.");
             alert.show();
+        }catch(NullPointerException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Input please.");
+            alert.show();
         }
     }
+
 
     public void cancelButtonClicked(){
         popUpWindow.close();
