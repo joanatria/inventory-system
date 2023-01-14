@@ -48,10 +48,11 @@ public class restockController {
     }
 
     public void okButtonClicked(){
+        try {
         amountAdded = Integer.parseInt(addAmountField.getText());
         origAmount = Integer.parseInt(itemSizeLabel.getText());
         newAmount = amountAdded + origAmount;
-        try {
+
             if (amountAdded < 0) {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setContentText("Incorrect input. No negative inputs allowed.");
@@ -72,6 +73,10 @@ public class restockController {
         }catch(InputMismatchException e){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Incorrect input. Numerical inputs only.");
+            alert.show();
+        }catch (NumberFormatException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Input an integer");
             alert.show();
         }
     }

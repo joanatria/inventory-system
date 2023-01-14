@@ -40,8 +40,6 @@ public class IngredientController implements Initializable {
     @FXML
     private TableColumn<Ingredient, String> descriptionColumn;
     public boolean addButtonIsClicked = false;
-    public boolean itemExists;
-    public String itemExistsII;
 
     private Main main;
     ObservableList<Ingredient> listIngredient;
@@ -80,7 +78,6 @@ public class IngredientController implements Initializable {
                 trcategory += categArr[i];
             }
         }
-
 
 
         char first = trcategory.charAt(0);
@@ -147,7 +144,7 @@ public class IngredientController implements Initializable {
 
     public void restockButtonClicked() throws IOException {
         Ingredient ingredient = new Ingredient();
-        ;
+
         boolean okButtonIsClicked = main.showRestockWindow(ingredient);
         if (okButtonIsClicked) {
             updateSQL(ingredient);
@@ -157,7 +154,6 @@ public class IngredientController implements Initializable {
 
     public void itemUsageButtonClicked() throws IOException {
         Ingredient ingredient = new Ingredient();
-        ;
         boolean okButtonIsClicked = main.showItemUsageWindow(ingredient);
         if (okButtonIsClicked) {
             updateSQL(ingredient);
@@ -178,19 +174,25 @@ public class IngredientController implements Initializable {
         }
     }
 
-    public void importButtonClicked() throws IOException {
-        Ingredient ingredient = new Ingredient();
-        boolean okButtonIsClicked = main.showBulkImportWindow(ingredient);
-        ObservableList<String> eachItem;
-        eachItem = bulkController.returnQueries();
-
-        if (okButtonIsClicked) {
+    public void importButtonClicked(){
+        try{
+            Ingredient ingredient = new Ingredient();
+            boolean okButtonIsClicked = main.showBulkImportWindow(ingredient);
+            ObservableList<String> eachItem;
             eachItem = bulkController.returnQueries();
-            //System.out.println(eachItem);
-            for (int i = 0; i < eachItem.size()-1; ++i ){
-                updateSQLL(eachItem.get(i));
-                updateTable();
+
+            if (okButtonIsClicked) {
+                eachItem = bulkController.returnQueries();
+                for (int i = 0; i < eachItem.size()-1; ++i ){
+                    updateSQLL(eachItem.get(i));
+                    updateTable();
+                }
             }
+        } catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Please fix your csv file format!");
+
+            alert.show();
         }
     }
 
@@ -213,7 +215,10 @@ public class IngredientController implements Initializable {
                     connection.close();
                 }
             } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Please fix your csv file format!");
+
+                alert.show();
             }
         }
     }
@@ -378,7 +383,10 @@ public class IngredientController implements Initializable {
                     connection.close();
                 }
             } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Error!");
+
+                alert.show();
             }
         }
     }
@@ -405,7 +413,10 @@ public class IngredientController implements Initializable {
                     connection.close();
                 }
             } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Error!");
+
+                alert.show();
             }
         }
     }

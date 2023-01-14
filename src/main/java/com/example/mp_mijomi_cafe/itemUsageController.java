@@ -45,31 +45,38 @@ public class itemUsageController {
         this.ingredient = ingredient;
     }
 
-    public void okButtonClicked(){
-        itemUsage = Integer.parseInt(itemUsageField.getText());
-        origAmount = Integer.parseInt(itemSizeLabel.getText());
-        newAmount = origAmount - itemUsage;
-        if (itemUsage > origAmount){
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Incorrect input. Usage exceeds the original amount.");
-            alert.show();
-        } else if(itemUsage < 0) {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Incorrect input. No negative inputs allowed.");
-            alert.show();
-        } else{
-            ingredient.setSKU(SKUField.getText());
-            ingredient.setItem(itemLabel.getText());
-            ingredient.setCategory(categoryLabel.getText());
-            ingredient.setBrand(brandLabel.getText());
-            ingredient.setItemSize(newAmount);
-            ingredient.setUnit(unitLabel.getText());
-            ingredient.setColor(colorLabel.getText());
-            ingredient.setType(typeLabel.getText());
-            ingredient.setDescription(descriptionLabel.getText());
+    public void okButtonClicked() {
+        try {
+            itemUsage = Integer.parseInt(itemUsageField.getText());
+            origAmount = Integer.parseInt(itemSizeLabel.getText());
+            newAmount = origAmount - itemUsage;
+            if (itemUsage > origAmount) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Incorrect input. Usage exceeds the original amount.");
+                alert.show();
+            } else if (itemUsage < 0) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setContentText("Incorrect input. No negative inputs allowed.");
+                alert.show();
+            } else {
+                ingredient.setSKU(SKUField.getText());
+                ingredient.setItem(itemLabel.getText());
+                ingredient.setCategory(categoryLabel.getText());
+                ingredient.setBrand(brandLabel.getText());
+                ingredient.setItemSize(newAmount);
+                ingredient.setUnit(unitLabel.getText());
+                ingredient.setColor(colorLabel.getText());
+                ingredient.setType(typeLabel.getText());
+                ingredient.setDescription(descriptionLabel.getText());
 
-            popUpWindow.close();
-        }okButtonIsClicked = true;
+                popUpWindow.close();
+            }
+            okButtonIsClicked = true;
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Input an integer");
+            alert.show();
+        }
     }
 
     public void cancelButtonClicked(){

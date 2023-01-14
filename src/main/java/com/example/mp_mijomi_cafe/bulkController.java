@@ -42,38 +42,49 @@ public class bulkController {
     }
 
     public void okButtonClicked() throws FileNotFoundException {
-        file = fileName.getText();
-        BufferedReader br = new BufferedReader(new FileReader(file));
-        String s;
-
-        Ingredient ingredient = new Ingredient();
-
         try{
+            file = fileName.getText();
+            BufferedReader br = new BufferedReader(new FileReader(file));
+            String s;
+
+            Ingredient ingredient = new Ingredient();
             while ((s = br.readLine()) != null) {
                 String[] split = s.split(",");
                 item = split[0];
+                item.replaceAll("'", "");
+
                 category = split[1];
+                category.replaceAll("'", "");
+
                 brand = split[2];
+                brand.replaceAll("'", "");
+
                 size = Integer.parseInt(split[3]);
+
                 unit = split[4];
+                unit.replaceAll("'", "");
+
                 row = IngredientController.selectItemSQL(item);
 
                 if (split[5].equals("-")) {
                     color = "";
                 } else {
                     color = split[5];
+                    color.replaceAll("'", "");
                 }
 
                 if (split[6].equals("-")) {
                     type = "";
                 } else {
                     type = split[6];
+                    type.replaceAll("'", "");
                 }
 
                 if (split[7].equals("-")) {
                     description = "";
                 } else {
                     description = split[7];
+                    description.replaceAll("'", "");
                 }
 
                 ingredient.setItem(item);
@@ -84,7 +95,6 @@ public class bulkController {
                 ingredient.setColor(color);
                 ingredient.setType(type);
                 ingredient.setDescription(description);
-
 
                 if (row.isEmpty()) {
                     ingredient.setSKU(IngredientController.generateSKU(ingredient));
@@ -99,7 +109,12 @@ public class bulkController {
                     updateQueries.add(updateQuery);
                 }
             }
-        } catch(IOException e){e.printStackTrace();}
+        }
+        catch (FileNotFoundException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Incorrect filename format.");
+            alert.show();
+        }catch(IOException e){e.printStackTrace();}
         catch (NumberFormatException e){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Amount should be an integer.");
@@ -111,16 +126,24 @@ public class bulkController {
     }
     
     public String setUpdateQueries(Ingredient ingredient){
-        
         String value1 = ingredient.getSKU();
+        value1.replaceAll("'", "");
         String value2 = ingredient.getItem();
+        value2.replaceAll("'", "");
         String value3 = ingredient.getCategory();
+        value3.replaceAll("'", "");
         String value4 = ingredient.getBrand();
+        value4.replaceAll("'", "");
         String value5 = String.valueOf(ingredient.getItemSize());
+        value5.replaceAll("'", "");
         String value6 = ingredient.getUnit();
+        value6.replaceAll("'", "");
         String value7 = ingredient.getColor();
+        value7.replaceAll("'", "");
         String value8 = ingredient.getType();
+        value8.replaceAll("'", "");
         String value9 = ingredient.getDescription();
+        value9.replaceAll("'", "");
 
         String SQL_UPDATE = "UPDATE Ingredient set SKU='" + value1 + "', Item='" + value2 + "', Category='" + value3 + "', Brand='" + value4 + "', Amount='" + value5 + "', Unit='" + value6 + "', Color='" + value7 + "', Type='" + value8 + "', Description='" + value9 + "' WHERE SKU='" + value1 + "'";
 
