@@ -4,9 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
+
+import java.io.File;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -36,7 +39,6 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("start-view.fxml"));
         Parent root = loader.load();
-
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
@@ -69,9 +71,10 @@ public class Main extends Application {
         control.setIngredient(ingredient);
 
         popUpWindow.setScene(scene);
+        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
         popUpWindow.showAndWait();
         popUpWindow.setResizable(false);
-        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
+
 
         return control.okButtonIsClicked;
     }
@@ -88,9 +91,9 @@ public class Main extends Application {
         control.setIngredient(ingredient);
 
         popUpWindow.setScene(scene);
+        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
         popUpWindow.showAndWait();
         popUpWindow.setResizable(false);
-        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
 
         return control.okButtonIsClicked;
     }
@@ -107,9 +110,10 @@ public class Main extends Application {
         control.setIngredient(ingredient);
 
         popUpWindow.setScene(scene);
+        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
         popUpWindow.showAndWait();
         popUpWindow.setResizable(false);
-        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
+
 
         return control.okButtonIsClicked;
     }
@@ -126,9 +130,9 @@ public class Main extends Application {
         control.setIngredient(ingredient);
 
         popUpWindow.setScene(scene);
+        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
         popUpWindow.showAndWait();
         popUpWindow.setResizable(false);
-        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
 
         return control.okButtonIsClicked;
     }
@@ -145,11 +149,15 @@ public class Main extends Application {
         control.setIngredient(ingredient);
 
         popUpWindow.setScene(scene);
+        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
         popUpWindow.showAndWait();
         popUpWindow.setResizable(false);
-        popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
+
 
         return control.okButtonIsClicked;
+    }
+    public void pdf(){
+    getHostServices().showDocument(getClass().getResource("TESTMANUAL.pdf").toString());;
     }
 
     public static void main(String[] args) {
