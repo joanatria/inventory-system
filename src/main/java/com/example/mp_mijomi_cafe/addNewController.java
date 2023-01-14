@@ -37,13 +37,7 @@ public class addNewController {
         itemField.setText(ingredient.getItem());
         categoryField.setText(ingredient.getCategory());
         brandField.setText(ingredient.getBrand());
-        if(Character.isDigit((char) ingredient.getItemSize())){
-            itemSizeField.setText(Double.toString(ingredient.getItemSize()));
-        }else{
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Incorrect input. Numerical values only.");
-            alert.show();
-        }
+        itemSizeField.setText(Double.toString(ingredient.getItemSize()));
         unitField.setText(ingredient.getUnit());
         colorField.setText(ingredient.getColor());
         typeField.setText(ingredient.getType());
@@ -75,6 +69,10 @@ public class addNewController {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Incorrect input. No negative inputs allowed.");
             alert.show();
+        }else if(Character.isLetter((char) ingredient.getItemSize())){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Incorrect input. Numerical values only.");
+            alert.show();
         }else{
             ingredient.setItem(itemField.getText());
             ingredient.setCategory(categoryField.getText());
@@ -88,6 +86,20 @@ public class addNewController {
             okButtonIsClicked = true;
             popUpWindow.close();
         }
+
+
+        ingredient.setItem(itemField.getText());
+        ingredient.setCategory(categoryField.getText());
+        ingredient.setBrand(brandField.getText());
+        ingredient.setItemSize(Integer.parseInt(itemSizeField.getText()));
+        ingredient.setUnit(unitField.getText());
+        ingredient.setColor(colorField.getText());
+        ingredient.setType(typeField.getText());
+        ingredient.setDescription(descriptionField.getText());
+        ingredient.setSKU(IngredientController.generateSKU(ingredient));
+
+        okButtonIsClicked = true;
+        popUpWindow.close();
     }
 
     public void cancelButtonClicked(){
