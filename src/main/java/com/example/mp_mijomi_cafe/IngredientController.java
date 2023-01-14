@@ -79,10 +79,12 @@ public class IngredientController implements Initializable {
             }
         }
 
+
+
         char first = trcategory.charAt(0);
         char last = trcategory.charAt(trcategory.length() - 1);
         char fitem = tritem.charAt(0);
-        char litem = tritem.charAt(item.length() - 1);
+        char litem = tritem.charAt(tritem.length() - 1);
         StringBuilder sku = new StringBuilder();
         sku.append(first);
         sku.append(last);

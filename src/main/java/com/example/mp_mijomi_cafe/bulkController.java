@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 public class bulkController {
     @FXML
@@ -40,6 +41,7 @@ public class bulkController {
             while ((s = br.readLine()) != null) {
                 String[] split = s.split(",");
                 item = split[0];
+                System.out.println(Arrays.toString(split));
                 category = split[1];
                 brand = split[2];
                 size = Integer.parseInt(split[3]);
