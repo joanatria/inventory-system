@@ -78,12 +78,30 @@
             <Font name="AppleGothic Regular" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="brandLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Label fx:id="itemSizeLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Label fx:id="unitLabel" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Label fx:id="colorLabel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <Label fx:id="descriptionLabel" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <Label fx:id="typeLabel" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Label fx:id="brandLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="itemSizeLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="unitLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="colorLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="7">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="descriptionLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="9">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="typeLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="8">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
       <Label prefHeight="41.0" prefWidth="62.0" text="SKU" textFill="#594a47">
          <font>
             <Font name="AppleGothic Regular" size="15.0" />

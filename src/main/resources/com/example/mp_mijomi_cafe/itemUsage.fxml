@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-
-<?import javafx.scene.shape.Rectangle?>
-<AnchorPane prefHeight="400.0" prefWidth="329.0" style="-fx-background-color: #ECE5DD;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mp_mijomi_cafe.itemUsageController">
+<AnchorPane prefHeight="400.0" prefWidth="329.0" style="-fx-background-color: #ECE5DD;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mp_mijomi_cafe.itemUsageController">
     <ImageView fitHeight="57.0" fitWidth="241.0" layoutX="45.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
         <image>
             <Image url="@logo.png" />
@@ -86,12 +78,30 @@
             <Font name="AppleGothic Regular" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="brandLabel" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Label fx:id="itemSizeLabel" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-      <Label fx:id="unitLabel" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-      <Label fx:id="colorLabel" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-      <Label fx:id="descriptionLabel" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-      <Label fx:id="typeLabel" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+      <Label fx:id="brandLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="4">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="itemSizeLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="5">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="unitLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="6">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="colorLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="7">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="descriptionLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="9">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <Label fx:id="typeLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="8">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
       <Label prefHeight="41.0" prefWidth="62.0" text="SKU" textFill="#594a47">
          <font>
             <Font name="AppleGothic Regular" size="15.0" />
