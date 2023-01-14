@@ -1,5 +1,6 @@
 package com.example.mp_mijomi_cafe;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -29,7 +30,7 @@ public class addNewController {
     private Ingredient ingredient;
     public boolean okButtonIsClicked = false;
     public boolean itemExists;
-    ObservableList<String> row;
+    ObservableList<String> row = FXCollections.observableArrayList();
 
     public void setPopUpWindow(Stage popUpWindow){
         this.popUpWindow = popUpWindow;
@@ -85,20 +86,23 @@ public class addNewController {
 
                 ingredient.setCategory(categoryField.getText());
                 ingredient.setBrand(brandField.getText());
-                ingredient.setItemSize(Integer.parseInt(itemSizeField.getText()));
                 ingredient.setUnit(unitField.getText());
                 ingredient.setColor(colorField.getText());
                 ingredient.setType(typeField.getText());
                 ingredient.setDescription(descriptionField.getText());
 
-
                 if(row.isEmpty()){
+                    ingredient.setItemSize(Integer.parseInt(itemSizeField.getText()));
                     ingredient.setSKU(IngredientController.generateSKU(ingredient));
                 }
 
                 else{
                     String SKU = String.valueOf(row.get(0));
+                    int sizeAdded = Integer.parseInt(row.get(4));
+                    int totalSize = sizeAdded + (Integer.parseInt(itemSizeField.getText()));
+
                     ingredient.setSKU(SKU);
+                    ingredient.setItemSize(totalSize);
 
                 }
                 okButtonIsClicked = true;
@@ -111,6 +115,25 @@ public class addNewController {
         }catch(NullPointerException e){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Input please.");
+            alert.show();
+        }
+    }
+
+    public void searchButtonClicked(){
+        ingredient.setItem(itemField.getText());
+        row = IngredientController.selectItemSQL(ingredient.getItem());
+
+        if (!row.isEmpty()) {
+            categoryField.setText(row.get(2));
+            brandField.setText(row.get(3));
+            unitField.setText(row.get(5));
+            colorField.setText(row.get(6));
+            typeField.setText(row.get(7));
+            descriptionField.setText(row.get(8));
+        }
+        else{
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setContentText("Item does not exist!");
             alert.show();
         }
     }

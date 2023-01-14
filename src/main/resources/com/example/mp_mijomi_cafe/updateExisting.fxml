@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="329.0" style="-fx-background-color: #ECE5DD;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mp_mijomi_cafe.updateExistingController">
+<AnchorPane prefHeight="400.0" prefWidth="329.0" style="-fx-background-color: #ECE5DD;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mp_mijomi_cafe.updateExistingController">
     <ImageView fitHeight="57.0" fitWidth="241.0" layoutX="54.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
         <image>
             <Image url="@logo.png" />
@@ -83,22 +90,25 @@
         </TextField>
         <TextField fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="7">
             <font>
-                <Font size="15.0" />
+                <Font size="12.0" />
             </font>
         </TextField>
-      <TextField fx:id="unitField" prefHeight="45.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-      <Label text="Unit" textFill="#594a47" GridPane.rowIndex="4">
+      <TextField fx:id="unitField" prefHeight="45.0" prefWidth="178.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
          <font>
             <Font size="15.0" />
+         </font></TextField>
+      <Label text="Unit" textFill="#594a47" GridPane.rowIndex="4">
+         <font>
+            <Font name="AppleGothic Regular" size="15.0" />
          </font></Label>
       <Label fx:id="itemLabel" layoutX="10.0" layoutY="276.0" prefHeight="22.0" prefWidth="181.0" textFill="#594a47" GridPane.columnIndex="1">
          <font>
-            <Font name="AppleGothic Regular" size="15.0" />
+            <Font size="15.0" />
          </font>
       </Label>
       <Label fx:id="categoryLabel" layoutX="104.0" layoutY="17.0" prefHeight="22.0" prefWidth="181.0" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <font>
-            <Font name="AppleGothic Regular" size="15.0" />
+            <Font size="15.0" />
          </font>
       </Label>
     </GridPane>

@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="329.0" style="-fx-background-color: #ECE5DD;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mp_mijomi_cafe.restockController">
+<AnchorPane prefHeight="400.0" prefWidth="329.0" style="-fx-background-color: #ECE5DD;" stylesheets="@design.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mp_mijomi_cafe.restockController">
    <ImageView fitHeight="57.0" fitWidth="241.0" layoutX="45.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@logo.png" />
@@ -66,16 +73,16 @@
         </Label>
       <Label text="Unit" textFill="#594a47" GridPane.rowIndex="6">
          <font>
-            <Font size="15.0" />
+            <Font name="AppleGothic Regular" size="15.0" />
          </font></Label>
       <Label fx:id="itemLabel" layoutX="10.0" layoutY="276.0" prefHeight="22.0" prefWidth="181.0" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <font>
-            <Font name="AppleGothic Regular" size="15.0" />
+            <Font size="15.0" />
          </font>
       </Label>
       <Label fx:id="categoryLabel" layoutX="104.0" layoutY="17.0" prefHeight="22.0" prefWidth="181.0" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <font>
-            <Font name="AppleGothic Regular" size="15.0" />
+            <Font size="15.0" />
          </font>
       </Label>
       <Label fx:id="brandLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="4">
@@ -96,7 +103,7 @@
          </font></Label>
       <Label fx:id="descriptionLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="9">
          <font>
-            <Font size="15.0" />
+            <Font size="12.0" />
          </font></Label>
       <Label fx:id="typeLabel" textFill="#594a47" GridPane.columnIndex="1" GridPane.rowIndex="8">
          <font>
@@ -112,8 +119,14 @@
             <Font name="AppleGothic Regular" size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="SKUField" GridPane.columnIndex="1" />
-      <TextField fx:id="addAmountField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TextField fx:id="SKUField" GridPane.columnIndex="1">
+         <font>
+            <Font size="15.0" />
+         </font></TextField>
+      <TextField fx:id="addAmountField" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font size="15.0" />
+         </font></TextField>
       <Button mnemonicParsing="false" onAction="#searchButtonClicked" text="Search" GridPane.columnIndex="2" />
     </GridPane>
    <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#a27657" height="63.0" layoutY="339.0" stroke="#a27657" strokeType="INSIDE" width="330.0" />

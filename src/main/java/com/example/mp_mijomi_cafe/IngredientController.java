@@ -107,7 +107,7 @@ public class IngredientController implements Initializable {
         return skucode;
     }
 
-    public void addButtonClicked() throws IOException, SQLException {
+    public void addButtonClicked() throws IOException {
         addButtonIsClicked = true;
         Ingredient newIngredient = new Ingredient();
         boolean okButtonIsClicked = main.showAddNewWindow(newIngredient);

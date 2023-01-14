@@ -48,64 +48,54 @@ public class bulkController {
             String s;
 
             Ingredient ingredient = new Ingredient();
+
             while ((s = br.readLine()) != null) {
                 String[] split = s.split(",");
-                item = split[0];
-                item.replaceAll("'", "");
-
-                category = split[1];
-                category.replaceAll("'", "");
-
-                brand = split[2];
-                brand.replaceAll("'", "");
-
+                item = split[0].replaceAll("'", "");
+                category = split[1].replaceAll("'", "");
+                brand = split[2].replaceAll("'", "");
                 size = Integer.parseInt(split[3]);
-
-                unit = split[4];
-                unit.replaceAll("'", "");
+                unit = split[4].replaceAll("'", "");
 
                 row = IngredientController.selectItemSQL(item);
-
                 if (split[5].equals("-")) {
                     color = "";
                 } else {
-                    color = split[5];
-                    color.replaceAll("'", "");
+                    color = split[5].replaceAll("'", "");
                 }
 
                 if (split[6].equals("-")) {
                     type = "";
                 } else {
-                    type = split[6];
-                    type.replaceAll("'", "");
+                    type = split[6].replaceAll("'", "");
                 }
 
                 if (split[7].equals("-")) {
                     description = "";
                 } else {
-                    description = split[7];
-                    description.replaceAll("'", "");
+                    description = split[7].replaceAll("'", "");
                 }
 
                 ingredient.setItem(item);
                 ingredient.setCategory(category);
                 ingredient.setBrand(brand);
-                ingredient.setItemSize(size);
                 ingredient.setUnit(unit);
                 ingredient.setColor(color);
                 ingredient.setType(type);
                 ingredient.setDescription(description);
 
                 if (row.isEmpty()) {
+                    ingredient.setItemSize(size);
                     ingredient.setSKU(IngredientController.generateSKU(ingredient));
                     IngredientController.addToSQL(ingredient);
-                }
-                else{
+                } else {
+                    int sizeAdded = Integer.parseInt(row.get(4));
+                    int totalSize = sizeAdded + size;
                     String SKU = String.valueOf(row.get(0));
-                    ingredient.setSKU(SKU);
-                    String updateQuery = setUpdateQueries(ingredient);
-                    //System.out.println(setUpdateQueries(ingredient));
 
+                    ingredient.setSKU(SKU);
+                    ingredient.setItemSize(totalSize);
+                    String updateQuery = setUpdateQueries(ingredient);
                     updateQueries.add(updateQuery);
                 }
             }
@@ -114,10 +104,9 @@ public class bulkController {
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Incorrect filename format.");
             alert.show();
-        }catch(IOException e){e.printStackTrace();}
-        catch (NumberFormatException e){
+        }catch(IOException | NumberFormatException | ArrayIndexOutOfBoundsException e){
             Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setContentText("Amount should be an integer.");
+            alert.setContentText("Incorrect .csv file format.");
             alert.show();
         }
 
@@ -126,24 +115,18 @@ public class bulkController {
     }
     
     public String setUpdateQueries(Ingredient ingredient){
-        String value1 = ingredient.getSKU();
-        value1.replaceAll("'", "");
-        String value2 = ingredient.getItem();
-        value2.replaceAll("'", "");
-        String value3 = ingredient.getCategory();
-        value3.replaceAll("'", "");
-        String value4 = ingredient.getBrand();
-        value4.replaceAll("'", "");
+        String value1 = ingredient.getSKU().replaceAll("'", "");
+        String value2 = ingredient.getItem().replaceAll("'", "");
+        String value3 = ingredient.getCategory().replaceAll("'", "");
+        String value4 = ingredient.getBrand().replaceAll("'", "");
         String value5 = String.valueOf(ingredient.getItemSize());
-        value5.replaceAll("'", "");
-        String value6 = ingredient.getUnit();
-        value6.replaceAll("'", "");
-        String value7 = ingredient.getColor();
-        value7.replaceAll("'", "");
-        String value8 = ingredient.getType();
-        value8.replaceAll("'", "");
-        String value9 = ingredient.getDescription();
-        value9.replaceAll("'", "");
+        String value6 = ingredient.getUnit().replaceAll("'", "");;
+        String value7 = ingredient.getColor().replaceAll("'", "");
+        String value8 = ingredient.getType().replaceAll("'", "");
+        String value9 = ingredient.getDescription().replaceAll("'", "");
+
+        System.out.println(value2);
+        System.out.println(value3);
 
         String SQL_UPDATE = "UPDATE Ingredient set SKU='" + value1 + "', Item='" + value2 + "', Category='" + value3 + "', Brand='" + value4 + "', Amount='" + value5 + "', Unit='" + value6 + "', Color='" + value7 + "', Type='" + value8 + "', Description='" + value9 + "' WHERE SKU='" + value1 + "'";
 

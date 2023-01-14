@@ -28,9 +28,9 @@
         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
-        <Label prefHeight="25.0" prefWidth="110.0" text="File name/Path file" textFill="#594a47">
+        <Label prefHeight="25.0" prefWidth="117.0" text="File name/Path file:" textFill="#594a47">
             <font>
-                <Font name="AppleGothic Regular" size="12.0" />
+                <Font name="AppleGothic Regular" size="13.0" />
             </font>
         </Label>
       <TextField fx:id="fileName" layoutX="104.0" layoutY="51.0" GridPane.columnIndex="1">
