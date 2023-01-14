@@ -35,7 +35,10 @@ public class bulkController {
     private ObservableList<String> row;
     private static ObservableList<String> updateQueries = FXCollections.observableArrayList();
 
-    ObservableList<Ingredient> list = FXCollections.observableArrayList();
+    private static ObservableList<Ingredient> list = FXCollections.observableArrayList();
+
+
+    private static ObservableList<Ingredient> items = FXCollections.observableArrayList();
 
     public void setPopUpWindow(Stage popUpWindow){
         this.popUpWindow = popUpWindow;
@@ -79,15 +82,17 @@ public class bulkController {
                 ingredient.setItem(item);
                 ingredient.setCategory(category);
                 ingredient.setBrand(brand);
+                ingredient.setItemSize(size);
                 ingredient.setUnit(unit);
                 ingredient.setColor(color);
                 ingredient.setType(type);
                 ingredient.setDescription(description);
 
                 if (row.isEmpty()) {
-                    ingredient.setItemSize(size);
+
                     ingredient.setSKU(IngredientController.generateSKU(ingredient));
                     IngredientController.addToSQL(ingredient);
+
                 } else {
                     int sizeAdded = Integer.parseInt(row.get(4));
                     int totalSize = sizeAdded + size;
@@ -125,9 +130,6 @@ public class bulkController {
         String value8 = ingredient.getType().replaceAll("'", "");
         String value9 = ingredient.getDescription().replaceAll("'", "");
 
-        System.out.println(value2);
-        System.out.println(value3);
-
         String SQL_UPDATE = "UPDATE Ingredient set SKU='" + value1 + "', Item='" + value2 + "', Category='" + value3 + "', Brand='" + value4 + "', Amount='" + value5 + "', Unit='" + value6 + "', Color='" + value7 + "', Type='" + value8 + "', Description='" + value9 + "' WHERE SKU='" + value1 + "'";
 
         return SQL_UPDATE;
@@ -136,6 +138,7 @@ public class bulkController {
     public static ObservableList<String> returnQueries(){
         return updateQueries;
     }
+    public static ObservableList<Ingredient> returnList(){ return list;}
 
     public void cancelButtonClicked(){
         popUpWindow.close();

@@ -180,7 +180,6 @@ public class IngredientController implements Initializable {
             boolean okButtonIsClicked = main.showBulkImportWindow(ingredient);
             ObservableList<String> eachItem;
             eachItem = bulkController.returnQueries();
-
             if (okButtonIsClicked) {
                 eachItem = bulkController.returnQueries();
                 for (int i = 0; i < eachItem.size()-1; ++i ){
