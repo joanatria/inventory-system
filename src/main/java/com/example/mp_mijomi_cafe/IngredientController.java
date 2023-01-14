@@ -1,6 +1,5 @@
 package com.example.mp_mijomi_cafe;
 
-import javafx.application.HostServices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -8,10 +7,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
@@ -42,10 +38,12 @@ public class IngredientController implements Initializable {
     @FXML
     private TableColumn<Ingredient, String> descriptionColumn;
     public boolean addButtonIsClicked = false;
+    public boolean itemExists;
+    public String itemExistsII;
 
     private Main main;
-    private Stage popUpWindow;
     ObservableList<Ingredient> listIngredient;
+    ObservableList<String> row;
 
     public void setMain(Main main) {
         this.main = main;
@@ -112,11 +110,18 @@ public class IngredientController implements Initializable {
         addButtonIsClicked = true;
         Ingredient newIngredient = new Ingredient();
         boolean okButtonIsClicked = main.showAddNewWindow(newIngredient);
+        row = selectItemSQL(newIngredient.getItem());
 
         if (okButtonIsClicked) {
             main.getIngredientData().add(newIngredient);
-            addToSQL(newIngredient);
-            updateTable();
+            if (row.isEmpty()) {
+                addToSQL(newIngredient);
+                updateTable();
+            }
+            else{
+                updateSQL(newIngredient);
+                updateTable();
+            }
         }
     }
 
@@ -271,6 +276,44 @@ public class IngredientController implements Initializable {
         return list;
     }
 
+    public static ObservableList<String> selectItemSQL(String itemValue) {
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        ObservableList<String> list = FXCollections.observableArrayList();
+
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:inventory.db");
+            statement = connection.prepareStatement("select * from Ingredient WHERE Item='" + itemValue + "'");
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                list.add(rs.getString("SKU"));
+                list.add(rs.getString("Item"));
+                list.add(rs.getString("Category"));
+                list.add(rs.getString("Brand"));
+                list.add(Integer.toString(rs.getInt("Amount")));
+                list.add(rs.getString("Unit"));
+                list.add(rs.getString("Color"));
+                list.add(rs.getString("Type"));
+                list.add(rs.getString("Description"));
+
+            }
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        return list;
+    }
+
     public static void updateSQL(Ingredient ingredient) {
         Connection connection = null;
         PreparedStatement statement = null;
@@ -287,10 +330,6 @@ public class IngredientController implements Initializable {
             String value7 = ingredient.getColor();
             String value8 = ingredient.getType();
             String value9 = ingredient.getDescription();
-
-            System.out.println(value1);
-            System.out.println(value2);
-            System.out.println(value3);
 
             final String SQL_UPDATE = "UPDATE Ingredient set SKU='" + value1 + "', Item='" + value2 + "', Category='" + value3 + "', Brand='" + value4 + "', Amount='" + value5 + "', Unit='" + value6 + "', Color='" + value7 + "', Type='" + value8 + "', Description='" + value9 + "' WHERE SKU='" + value1 + "'";
 
