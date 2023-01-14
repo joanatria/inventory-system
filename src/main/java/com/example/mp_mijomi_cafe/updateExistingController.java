@@ -46,7 +46,7 @@ public class updateExistingController {
         categoryLabel.setText(category);
         brandField.setText(ingredient.getBrand());
         if(Character.isDigit((char) ingredient.getItemSize())){
-            itemSizeField.setText(Double.toString(ingredient.getItemSize()));
+            itemSizeField.setText(Integer.toString(ingredient.getItemSize()));
         }else{
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Incorrect input. Numerical values only.");

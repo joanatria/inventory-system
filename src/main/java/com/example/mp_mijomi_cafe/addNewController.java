@@ -37,7 +37,7 @@ public class addNewController {
         itemField.setText(ingredient.getItem());
         categoryField.setText(ingredient.getCategory());
         brandField.setText(ingredient.getBrand());
-        itemSizeField.setText(Double.toString(ingredient.getItemSize()));
+        itemSizeField.setText(Integer.toString(ingredient.getItemSize()));
         unitField.setText(ingredient.getUnit());
         colorField.setText(ingredient.getColor());
         typeField.setText(ingredient.getType());
