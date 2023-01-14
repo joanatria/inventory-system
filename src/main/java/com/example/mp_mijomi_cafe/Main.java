@@ -144,7 +144,7 @@ public class Main extends Application {
         return control.okButtonIsClicked;
     }
     public void pdf(){
-    getHostServices().showDocument(getClass().getResource("TESTMANUAL.pdf").toString());;
+    getHostServices().showDocument(getClass().getResource("User-Manual.pdf").toString());;
     }
 
     public static void main(String[] args) {
