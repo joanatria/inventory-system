@@ -25,16 +25,6 @@ public class Main extends Application {
         return ingredientData;
     }
 
-    /**
-     *
-     * @param stage the primary stage for this application, onto which
-     * the application scene can be set.
-     * Applications may create other stages, if needed, but they will not be
-     * primary stages.
-     * @throws IOException
-     *
-     * Loads the start-view.fxml file
-     */
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("start-view.fxml"));
@@ -51,14 +41,7 @@ public class Main extends Application {
         ingredientControl.setMain(this);
     }
 
-    /**
-     *
-     * @param ingredient
-     * @return
-     * @throws IOException
-     *
-     * Loads the addNew.fxml file as a popUpWindow
-     */
+
     public boolean showAddNewWindow(Ingredient ingredient) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("addNew.fxml"));
         Parent root = loader.load();
@@ -71,6 +54,7 @@ public class Main extends Application {
         control.setIngredient(ingredient);
 
         popUpWindow.setScene(scene);
+        popUpWindow.setTitle("Add Item");
         popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
         popUpWindow.showAndWait();
         popUpWindow.setResizable(false);
@@ -91,6 +75,7 @@ public class Main extends Application {
         control.setIngredient(ingredient);
 
         popUpWindow.setScene(scene);
+        popUpWindow.setTitle("Update Item");
         popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
         popUpWindow.showAndWait();
         popUpWindow.setResizable(false);
@@ -110,6 +95,7 @@ public class Main extends Application {
         control.setIngredient(ingredient);
 
         popUpWindow.setScene(scene);
+        popUpWindow.setTitle("Restock Item");
         popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
         popUpWindow.showAndWait();
         popUpWindow.setResizable(false);
@@ -130,6 +116,7 @@ public class Main extends Application {
         control.setIngredient(ingredient);
 
         popUpWindow.setScene(scene);
+        popUpWindow.setTitle("Item Usage");
         popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
         popUpWindow.showAndWait();
         popUpWindow.setResizable(false);
@@ -148,6 +135,7 @@ public class Main extends Application {
         control.setPopUpWindow(popUpWindow);
 
         popUpWindow.setScene(scene);
+        popUpWindow.setTitle("Import CSV File");
         popUpWindow.getIcons().add(new Image(Main.class.getResourceAsStream("icon.png")));
         popUpWindow.showAndWait();
         popUpWindow.setResizable(false);
