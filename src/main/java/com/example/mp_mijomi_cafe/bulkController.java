@@ -1,5 +1,9 @@
 package com.example.mp_mijomi_cafe;
 
+import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
@@ -9,7 +13,10 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 public class bulkController {
     @FXML
@@ -25,6 +32,10 @@ public class bulkController {
     private String color;
     private String type;
     private String description;
+    private ObservableList<String> row;
+    private static ObservableList<String> updateQueries = FXCollections.observableArrayList();
+
+    ObservableList<Ingredient> list = FXCollections.observableArrayList();
 
     public void setPopUpWindow(Stage popUpWindow){
         this.popUpWindow = popUpWindow;
@@ -41,11 +52,11 @@ public class bulkController {
             while ((s = br.readLine()) != null) {
                 String[] split = s.split(",");
                 item = split[0];
-                System.out.println(Arrays.toString(split));
                 category = split[1];
                 brand = split[2];
                 size = Integer.parseInt(split[3]);
                 unit = split[4];
+                row = IngredientController.selectItemSQL(item);
 
                 if (split[5].equals("-")) {
                     color = "";
@@ -73,19 +84,51 @@ public class bulkController {
                 ingredient.setColor(color);
                 ingredient.setType(type);
                 ingredient.setDescription(description);
-                ingredient.setSKU(IngredientController.generateSKU(ingredient));
 
-                IngredientController.addToSQL(ingredient);
+
+                if (row.isEmpty()) {
+                    ingredient.setSKU(IngredientController.generateSKU(ingredient));
+                    IngredientController.addToSQL(ingredient);
+                }
+                else{
+                    String SKU = String.valueOf(row.get(0));
+                    ingredient.setSKU(SKU);
+                    String updateQuery = setUpdateQueries(ingredient);
+                    //System.out.println(setUpdateQueries(ingredient));
+
+                    updateQueries.add(updateQuery);
+                }
             }
         } catch(IOException e){e.printStackTrace();}
         catch (NumberFormatException e){
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setContentText("Amount should be an integer.");
             alert.show();
-        };
+        }
 
         okButtonIsClicked = true;
         popUpWindow.close();
+    }
+    
+    public String setUpdateQueries(Ingredient ingredient){
+        
+        String value1 = ingredient.getSKU();
+        String value2 = ingredient.getItem();
+        String value3 = ingredient.getCategory();
+        String value4 = ingredient.getBrand();
+        String value5 = String.valueOf(ingredient.getItemSize());
+        String value6 = ingredient.getUnit();
+        String value7 = ingredient.getColor();
+        String value8 = ingredient.getType();
+        String value9 = ingredient.getDescription();
+
+        String SQL_UPDATE = "UPDATE Ingredient set SKU='" + value1 + "', Item='" + value2 + "', Category='" + value3 + "', Brand='" + value4 + "', Amount='" + value5 + "', Unit='" + value6 + "', Color='" + value7 + "', Type='" + value8 + "', Description='" + value9 + "' WHERE SKU='" + value1 + "'";
+
+        return SQL_UPDATE;
+    }
+
+    public static ObservableList<String> returnQueries(){
+        return updateQueries;
     }
 
     public void cancelButtonClicked(){

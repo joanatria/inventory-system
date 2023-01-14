@@ -1,6 +1,8 @@
 package com.example.mp_mijomi_cafe;
 
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -11,7 +13,7 @@ import javafx.scene.control.TableView;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class IngredientController implements Initializable {
     @FXML
@@ -179,9 +181,40 @@ public class IngredientController implements Initializable {
     public void importButtonClicked() throws IOException {
         Ingredient ingredient = new Ingredient();
         boolean okButtonIsClicked = main.showBulkImportWindow(ingredient);
+        ObservableList<String> eachItem;
+        eachItem = bulkController.returnQueries();
+
         if (okButtonIsClicked) {
-            //updateSQL(ingredient);
-            updateTable();
+            eachItem = bulkController.returnQueries();
+            //System.out.println(eachItem);
+            for (int i = 0; i < eachItem.size()-1; ++i ){
+                updateSQLL(eachItem.get(i));
+                updateTable();
+            }
+        }
+    }
+
+    public static void updateSQLL(String SQL_UPDATE) {
+        Connection connection = null;
+        Statement statement = null;
+
+        try {
+            connection = DriverManager.getConnection("jdbc:sqlite:inventory.db");
+            statement = connection.createStatement();
+            statement.executeUpdate(SQL_UPDATE);
+            statement.close();
+            connection.close();
+
+        } catch (SQLException e) {
+            System.err.format("SQL State: %s\n%s", e.getSQLState(), e.getMessage());
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
         }
     }
 
