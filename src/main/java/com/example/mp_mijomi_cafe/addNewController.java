@@ -6,6 +6,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class addNewController {
     @FXML
     private TextField itemField;
@@ -26,6 +28,8 @@ public class addNewController {
     private Stage popUpWindow;
     private Ingredient ingredient;
     public boolean okButtonIsClicked = false;
+    public boolean itemExists;
+    ObservableList<String> row;
 
     public void setPopUpWindow(Stage popUpWindow){
         this.popUpWindow = popUpWindow;
@@ -76,6 +80,9 @@ public class addNewController {
                 alert.show();
             }else{
                 ingredient.setItem(itemField.getText());
+
+                row = IngredientController.selectItemSQL(ingredient.getItem());
+
                 ingredient.setCategory(categoryField.getText());
                 ingredient.setBrand(brandField.getText());
                 ingredient.setItemSize(Integer.parseInt(itemSizeField.getText()));
@@ -83,8 +90,17 @@ public class addNewController {
                 ingredient.setColor(colorField.getText());
                 ingredient.setType(typeField.getText());
                 ingredient.setDescription(descriptionField.getText());
-                ingredient.setSKU(IngredientController.generateSKU(ingredient));
 
+
+                if(row.isEmpty()){
+                    ingredient.setSKU(IngredientController.generateSKU(ingredient));
+                }
+
+                else{
+                    String SKU = String.valueOf(row.get(0));
+                    ingredient.setSKU(SKU);
+
+                }
                 okButtonIsClicked = true;
                 popUpWindow.close();
             }
@@ -98,7 +114,6 @@ public class addNewController {
             alert.show();
         }
     }
-
 
     public void cancelButtonClicked(){
         popUpWindow.close();
